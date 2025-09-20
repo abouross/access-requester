@@ -1,4 +1,9 @@
 @use '@angular/material' as mat;
+@use '_reset.css';
+
+html, body {
+  height: 100%;
+}
 
 html {
   @include mat.theme((
@@ -12,22 +17,23 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
 
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
+  color-scheme: light dark;
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
   margin: 0;
-}
-/* You can add global styles to this file, and also import other style files */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  // Color scheme support
+  &.dark-mode {
+    color-scheme: dark;
+  }
+
+  &.light-mode {
+    color-scheme: light;
+  }
+}
