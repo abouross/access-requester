@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: access-requester
+  #  Datasource
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/access-requester}
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:}
+  #  JPA
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL:update}
+  #  Mail
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_POST:25}
+    properties:
+      mail:
+        smtp:
+          auth: ${SMTP_AUTH:false}
+          starttls:
+            enable: ${SMTP_TLS:false}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    test-connection: false
+#Logging
+server:
+  error:
+    include-message: always
+logging:
+  file:
+    name: ${LOGGING_FILE:./logs/${spring.application.name}.log}
+#Security
+cors:
+  cors-origins: ${CORS_ORIGINS:https://access-requester.dev}
+  cors-methods: ${CORS_METHODS:*}
+  cors-headers: ${CORS_HEADERS:*}
+roles:
+  map:
+    ADMIN: Administrator
+    USERS_MNGT: Users management
+    SETTINGS: Settings
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  file:
+    name:
+  level:
+    td.aboudev: trace
+cors:
+  cors-origins: '*'
