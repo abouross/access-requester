@@ -1,0 +1,24 @@
+volumes:
+  db:
+    driver: local
+services:
+  db:
+    image: mysql:8
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: DgH40Y5XJdex
+      MYSQL_DATABASE: access-requester
+      MYSQL_USER: access-requester
+      MYSQL_PASSWORD: iCP3W9ZSccD5
+    volumes:
+      - 'db:/var/lib/mysql'
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"

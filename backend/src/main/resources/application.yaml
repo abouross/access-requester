@@ -3,17 +3,17 @@ spring:
     name: access-requester
   #  Datasource
   datasource:
-    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/access-requester}
-    username: ${DATASOURCE_USERNAME:root}
-    password: ${DATASOURCE_PASSWORD:}
+    url: ${DATASOURCE_URL:jdbc:mysql://db:3306/access-requester?useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DATASOURCE_USERNAME:access-requester}
+    password: ${DATASOURCE_PASSWORD:iCP3W9ZSccD5}
   #  JPA
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL:update}
   #  Mail
   mail:
-    host: ${MAIL_HOST:localhost}
-    port: ${MAIL_POST:25}
+    host: ${MAIL_HOST:maildev}
+    port: ${MAIL_POST:1025}
     properties:
       mail:
         smtp:
@@ -22,7 +22,6 @@ spring:
             enable: ${SMTP_TLS:false}
     username: ${MAIL_USERNAME:}
     password: ${MAIL_PASSWORD:}
-    test-connection: false
 #Logging
 server:
   error:
@@ -45,8 +44,12 @@ spring:
   config:
     activate:
       on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/access-requester?useSSL=false&allowPublicKeyRetrieval=true
   jpa:
     show-sql: true
+  mail:
+    host: localhost
 management:
   endpoints:
     web:
