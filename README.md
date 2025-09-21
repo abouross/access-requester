@@ -1,6 +1,6 @@
 # Access Requester
 
-<img src="long-logo.png" alt="App logo">
+<img src="logo/text-logo.png" alt="App logo">
 
 **IT Access Request Manager** is the access manager for your company's or institution's information systems. It allows you to control your employees' access.
 
