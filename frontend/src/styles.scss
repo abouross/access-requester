@@ -1,11 +1,11 @@
 @use '@angular/material' as mat;
-@use '_reset.css';
-
-html, body {
-  height: 100%;
-}
 
 html {
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
+
+  height: 100%;
   @include mat.theme((
     color: (
       primary: mat.$cyan-palette,
@@ -14,26 +14,23 @@ html {
     typography: Roboto,
     density: 0,
   ));
-}
 
-body {
-  --animate-duration: 1s;
-  --animate-delay: 1s;
-  --animate-repeat: 1;
+  body {
+    height: 100%;
+    color-scheme: light dark;
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+    font: var(--mat-sys-body-medium);
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 
-  color-scheme: light dark;
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+    // Color scheme support
+    &.dark-mode {
+      color-scheme: dark;
+    }
 
-  // Color scheme support
-  &.dark-mode {
-    color-scheme: dark;
-  }
-
-  &.light-mode {
-    color-scheme: light;
+    &.light-mode {
+      color-scheme: light;
+    }
   }
 }

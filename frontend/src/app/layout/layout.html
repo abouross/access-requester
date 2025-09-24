@@ -1,0 +1,95 @@
+<!--Main Toolbar-->
+<mat-toolbar id="main-toolbar"
+             [class]="{'dark': appearanceService.isDark$|async, 'light': !(appearanceService.isDark$|async)}">
+  <button type="button" aria-label="Toggle sidenav" matIconButton (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <a class="appname" href="/">
+    <img ngSrc="/logo.png" alt="App logo" height="788" width="817" priority/>
+    {{ appName() }}
+  </a>
+
+  <!--  Appearance toggler-->
+  <button type="button" matIconButton class="appearance-btn" (click)="appearanceService.toggleDarkMode()"
+          [matTooltip]="(appearanceService.isDark$|async)?('mode.dark'|translate):('mode.light'|translate)">
+    <mat-icon>
+      @if ((appearanceService.isDark$|async) === true) {
+        dark_mode
+      } @else {
+        light_mode
+      }
+    </mat-icon>
+  </button>
+  <!--  End Appearance toggler-->
+
+  <span class="divider"></span>
+
+  <!--  Language selector-->
+  <select class="language-select" [value]="languageService.language$|async"
+          (change)="change($event)">
+    @for (language of languageService.languages; track language) {
+      <option [value]="language">{{ 'lang.' + language|translate }}</option>
+    }
+  </select>
+  <!--  End language selector-->
+
+  <!--  User menu-->
+  @if (profile()) {
+    <span class="divider"></span>
+    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu">
+      <mat-icon>account_circle</mat-icon>
+      {{ profile()?.displayName }}
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">Deconnexion</button>
+    </mat-menu>
+  }
+  <!--  End user menu-->
+</mat-toolbar>
+<!--End main toolbar-->
+
+<!--Navigation container-->
+<mat-sidenav-container id="main-sidenav-container">
+  <!--Main menu-->
+  <mat-sidenav #drawer id="main-sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-nav-list id="main-menu">
+      <ul>
+        @for (item of menuItems(); track $index) {
+          <li [class.group]="item.children && item.children.length>0">
+            <a mat-list-item [routerLink]="item.link" [activated]="item.isActive"
+               [class.active]="item.isActive">
+              @if (item.icon) {
+                <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+              }
+              {{ item.title|translate }}
+            </a>
+          </li>
+          @if (item.children && item.children.length > 0) {
+            @for (subItem of item.children; track $index) {
+              <li class="sub-item">
+                <a mat-list-item [routerLink]="subItem.link" [activated]="subItem.isActive"
+                   [class.active]="subItem.isActive">
+                  @if (subItem.icon) {
+                    <mat-icon matListItemIcon>{{ subItem.icon }}</mat-icon>
+                  }
+                  {{ subItem.title|translate }}
+                </a>
+              </li>
+            }
+          }
+        }
+      </ul>
+    </mat-nav-list>
+    <div id="credits">
+      <span class="version">V1.0.0</span>
+      {{ 'madeby'|translate }} <a href="https://aboudev.tech" target="_blank"><strong>AbouDev</strong></a> &copy; 2025
+    </div>
+  </mat-sidenav>
+  <!--End main menu-->
+
+  <mat-sidenav-content id="main-sidenav-content">
+    <router-outlet/>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!--End navigation container-->

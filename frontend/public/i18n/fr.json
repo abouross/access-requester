@@ -1,0 +1,14 @@
+{
+  "menu": {
+    "dashboard": "Tableau de board",
+    "access-request": "Demandes d'accès",
+    "validations": "Validations",
+    "applications": "Applications / Systèmes",
+    "delegations": "Délégations",
+    "users": "Utilisateurs",
+    "settings": "Paramètres",
+    "contexts": "Contextes de validation",
+    "flows": "Flux de validations"
+  },
+  "madeby": "Fait avec ♥ par"
+}

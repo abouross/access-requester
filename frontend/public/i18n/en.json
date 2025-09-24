@@ -1,0 +1,18 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "access-request": "Access requests",
+    "validations": "Validations",
+    "applications": "Applications / Systems",
+    "delegations": "Delegations",
+    "users": "Users",
+    "settings": "Settings",
+    "contexts": "Validation contexts",
+    "flows": "Validation flows"
+  },
+  "lang": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "madeby": "Made with ♥ by"
+}

@@ -1,0 +1,167 @@
+@use '@angular/material' as mat;
+@use "sass:map";
+@use 'sass:color';
+
+mat-toolbar#main-toolbar {
+  color-scheme: dark;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 5;
+  box-shadow: var(--mat-sys-level1);
+  @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary-container),
+    container-text-color: var(--mat-sys-on-primary-container)));
+
+  a,
+  mat-button,
+  mat-icon {
+    color: var(--mat-sys-on-primary-container);
+  }
+
+  .appname {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+    align-items: center;
+    margin-left: .5rem;
+
+    & > img {
+      margin-right: .5rem;
+      height: 48px;
+      width: auto;
+    }
+  }
+
+  .appearance-btn {
+    margin-left: auto;
+  }
+
+  .divider {
+    width: 1px;
+    height: 24px;
+    background-color: #fff;
+    margin: 0 .5rem;
+  }
+
+  .language-select {
+    border-radius: var(--mat-sys-corner-extra-small);
+    outline-width: 0;
+    font: var(--mat-sys-body-large-font);
+    font-size: var(--mat-sys-body-large-size);
+    font-weight: var(--mat-sys-body-large-weight);
+    letter-spacing: var(--mat-sys-body-large-tracking);
+    height: 36px;
+    padding: 6px;
+    border: 1px solid var(--mat-sys-outline);
+  }
+
+  .user-menu {
+    user-select: none;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    fill: currentColor;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #fff;
+    font: var(--mat-sys-body-large);
+
+    &:hover,
+    &:hover > mat-icon {
+      color: light-dark(map.get(mat.$blue-palette, 90), var(--mat-sys-on-primary-container));
+    }
+
+    mat-icon {
+      margin-right: .5rem;
+      font-size: 40px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+}
+
+//Sidenav
+mat-sidenav-container#main-sidenav-container {
+  height: 100vh;
+  width: 100vw;
+
+  //Menu
+  mat-sidenav#main-sidenav {
+    --main-sidenav-border: solid 1px var(--mat-sys-outline);
+    padding-top: var(--mat-toolbar-standard-height, 64px);
+    width: 300px;
+    border-radius: 0;
+    padding-right: 10px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      background: url(/split-delimiter.png) repeat scroll 0 0 transparent;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    mat-nav-list#main-menu {
+      li.group {
+        margin-bottom: 12px;
+
+        a {
+          cursor: initial;
+        }
+      }
+
+      li.sub-item {
+        position: relative;
+        padding-left: calc(var(--mat-list-list-item-leading-icon-size, 24px) + (var(--mat-list-list-item-leading-icon-end-space, 16px) / 2));
+
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: -12px;
+          bottom: 0;
+          left: calc(var(--mat-list-list-item-leading-icon-start-space, 16px) + (var(--mat-list-list-item-leading-icon-size, 24px) / 2));
+          width: 1px;
+          background-color: var(--mat-sys-outline);
+        }
+      }
+    }
+
+    #credits {
+      text-align: center;
+      border-top: var(--main-sidenav-border);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 10px;
+      max-width: 100%;
+      padding: .5rem 0;
+
+      a {
+        text-decoration: none;
+        color: var(--mat-sys-on-primary-container);
+      }
+
+      .version {
+        display: block;
+        font-weight: bold;
+      }
+    }
+  }
+
+  mat-sidenav-content#main-sidenav-content {
+    padding-top: var(--mat-toolbar-standard-height, 64px);
+  }
+}
+
