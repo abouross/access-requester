@@ -1,7 +1,7 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "access-request": "Access requests",
+    "access_request": "Access requests",
     "validations": "Validations",
     "applications": "Applications / Systems",
     "delegations": "Delegations",
@@ -13,6 +13,17 @@
   "lang": {
     "fr": "Français",
     "en": "English"
+  },
+  "title": {
+    "dashboard": "Dashboard - {{appName}}",
+    "error": "Error {{code}} - {{appName}}"
+  },
+  "error": {
+    "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
+    "forbidden": "You are not authorized to consume this resource.",
+    "unauthorized_method": "Server error 405. Please escalate to technical support, thank you for your understanding.",
+    "service_unavailable": "The resource is not available, please try again later.",
+    "not_found": "Server error 404, resource not found. Please escalate to technical support, thank you for your understanding."
   },
   "madeby": "Made with ♥ by"
 }

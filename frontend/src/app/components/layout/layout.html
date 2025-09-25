@@ -25,10 +25,16 @@
   <span class="divider"></span>
 
   <!--  Language selector-->
-  <select class="language-select" [value]="languageService.language$|async"
+  <select class="language-select" [value]="currentLanguage()"
           (change)="change($event)">
-    @for (language of languageService.languages; track language) {
-      <option [value]="language">{{ 'lang.' + language|translate }}</option>
+    @if (!currentLanguage() || currentLanguage().trim().length <= 0) {
+      <option></option>
+    }
+    @for (language of environment.translation.supportedLanguages; track language) {
+      <option [value]="language"
+              [selected]="language === currentLanguage()">
+        {{ 'lang.' + language|translate }}
+      </option>
     }
   </select>
   <!--  End language selector-->

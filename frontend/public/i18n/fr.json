@@ -1,7 +1,7 @@
 {
   "menu": {
     "dashboard": "Tableau de board",
-    "access-request": "Demandes d'accès",
+    "access_request": "Demandes d'accès",
     "validations": "Validations",
     "applications": "Applications / Systèmes",
     "delegations": "Délégations",
@@ -9,6 +9,21 @@
     "settings": "Paramètres",
     "contexts": "Contextes de validation",
     "flows": "Flux de validations"
+  },
+  "lang": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "title": {
+    "dashboard": "Tableau de board - {{appName}}",
+    "error": "Erreur {{code}} - {{appName}}"
+  },
+  "error": {
+    "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
+    "forbidden": "Vous n'êtes pas autorisé à consommer cette ressource.",
+    "unauthorized_method": "Erreur serveur 405.Veuillez remonter à la technique, merci de votre compréhension.",
+    "service_unavailable": "La ressource n'est pas disponible, veuillez réessayer plus tard.",
+    "not_found": "Erreur serveur 404, resource introuvable. Veuillez remonter à la technique, merci de votre compréhension."
   },
   "madeby": "Fait avec ♥ par"
 }

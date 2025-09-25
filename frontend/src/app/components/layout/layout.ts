@@ -6,18 +6,17 @@ import {AppearanceService} from './appearance-service';
 import {AsyncPipe, NgOptimizedImage} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {environment} from '../../environments/environment';
 import {MatTooltip} from '@angular/material/tooltip';
-import {Profile} from '../security/models';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from '@angular/material/sidenav';
 import {filter, map, Observable, shareReplay, takeUntil} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {mainMenuItems, MenuItem} from './menu';
 import {MatListItem, MatListItemIcon, MatNavList} from '@angular/material/list';
-import {Security} from '../security/security';
-import {TranslatePipe} from '@ngx-translate/core';
-import {LanguageService} from './language-service';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
+import {environment} from '../../../environments/environment';
+import {Security} from '../../security/security';
+import {Profile} from '../../security/models';
 
 @Component({
   selector: 'app-layout',
@@ -43,16 +42,17 @@ import {LanguageService} from './language-service';
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
-  providers: [AppearanceService, LanguageService]
+  providers: [AppearanceService]
 })
 export class Layout extends Destroyable implements OnInit {
+  private readonly LANGUAGE_KEY = 'access-requester-language'
   private _breakpointObserver = inject(BreakpointObserver)
   private _security = inject(Security)
   private _activatedRoute = inject(ActivatedRoute)
   private _router = inject(Router)
+  private _translate = inject(TranslateService)
 
   protected appearanceService = inject(AppearanceService)
-  protected languageService = inject(LanguageService)
   protected appName = signal(environment.appName)
   protected profile = signal<Profile | null>(null)
   protected isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Handset)
@@ -61,16 +61,29 @@ export class Layout extends Destroyable implements OnInit {
       shareReplay()
     )
   protected menuItems = signal<MenuItem[]>(mainMenuItems)
+  protected currentLanguage = signal(this._translate.getCurrentLang())
+  protected readonly environment = environment;
 
   ngOnInit() {
     // Set main menu item
     this._initMenu()
     // Update when activated menu item when url change
     this._menuChangeListener()
+    // Listen to language change
+    this._translate.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(event => this.currentLanguage.set(event.lang))
   }
 
   protected logout() {
   }
+
+  protected change($event: Event) {
+    const lang = ($event.target as HTMLSelectElement).value
+    if (lang && lang.trim().length > 0)
+      this._translate.use(lang)
+  }
+
 
   /**
    * Initialize main menu by checking required role and add if it's authorized
@@ -133,7 +146,4 @@ export class Layout extends Destroyable implements OnInit {
     })
   }
 
-  change($event: Event) {
-    this.languageService.change(($event.target as HTMLSelectElement).value)
-  }
 }
