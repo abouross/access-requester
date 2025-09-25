@@ -45,7 +45,6 @@ import {Profile} from '../../security/models';
   providers: [AppearanceService]
 })
 export class Layout extends Destroyable implements OnInit {
-  private readonly LANGUAGE_KEY = 'access-requester-language'
   private _breakpointObserver = inject(BreakpointObserver)
   private _security = inject(Security)
   private _activatedRoute = inject(ActivatedRoute)
