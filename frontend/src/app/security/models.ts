@@ -5,6 +5,8 @@ export interface Profile {
   firstName: string
   lastName: string
   displayName: string
+  title: string
+  email: string
 }
 
 const parseToken = (token: string) => {

@@ -11,15 +11,20 @@
 
   <!--  User menu-->
   @if (profile()) {
-    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu">
+    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu" [matTooltip]="profile()?.displayName">
       <!--      <mat-icon>account_circle</mat-icon>-->
       <img ngSrc="/user.png" [alt]="profile()?.displayName" height="512" width="512"/>
     </button>
     <mat-menu #userMenu="matMenu">
-      <h4 mat-menu-item>
-        {{ profile()?.displayName }}
-      </h4>
+      <p class="user-info">
+        <span class="user-name">{{ profile()?.displayName }}</span>
+        @if (profile()?.title) {
+          <span class="user-title">{{ profile()?.title }}</span>
+        }
+        <span class="user-account">{{ profile()?.username }} - {{ profile()?.email }}</span>
+      </p>
       <mat-divider></mat-divider>
+      <a mat-menu-item href="/profile" routerLink="/profile">{{ 'user.profile'|translate }}</a>
       <button mat-menu-item (click)="logout()">Deconnexion</button>
     </mat-menu>
     <div class="divider"></div>

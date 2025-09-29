@@ -39,5 +39,8 @@
     "dark": "Dark mode",
     "light": "Light mode"
   },
+  "user": {
+    "profile": "Profile"
+  },
   "madeby": "Made with ♥ by"
 }

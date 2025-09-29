@@ -4,10 +4,11 @@ import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError, take} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
+import {Security} from '../../security/security';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
-  // const security = inject(SecurityService);
+  const security = inject(Security);
   const snackBar = inject(MatSnackBar)
   const translate = inject(TranslateService)
   return next(req)
@@ -30,7 +31,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                 ));
             break;
           case 401:
-            // security.logout()
+            security.logout()
             break;
           case 403:
             translate.get('error.forbidden')
