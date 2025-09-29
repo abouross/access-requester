@@ -10,16 +10,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL:update}
-  #  LDAP
-  ldap:
-    urls: ${LDAP_URL:ldap://192.168.70.28:389,ldap://192.168.70.31:389}
-    base: ${LDAP_BASE:DC=moovafrica,DC=td}
-    username: ${LDAP_USERNAME:MoovFlow@moovafrica.td}
-    password: ${LDAP_PASSWORD:M@@v2022!}
-    template:
-      ignore-size-limit-exceeded-exception: true
-      ignore-partial-result-exception: true
-      ignore-name-not-found-exception: true
   #  Mail
   mail:
     host: ${MAIL_HOST:maildev}
