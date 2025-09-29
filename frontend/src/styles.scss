@@ -30,3 +30,19 @@ html {
     }
   }
 }
+
+/** Snackbar customization **/
+.error-snackbar {
+  @include mat.snack-bar-overrides((container-color: var(--mat-sys-on-error),
+    supporting-text-color: var(--mat-sys-error),
+    button-color: var(--mat-sys-error)));
+}
+
+.success-snackbar {
+  @include mat.snack-bar-overrides((
+    container-color: light-dark(#d1e7dd, #051b11),
+    supporting-text-color: light-dark(#0a3622, #75b798),
+    button-color: light-dark(#0a3622, #75b798)));
+}
+
+/** End snackbar customization **/

@@ -4,7 +4,7 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {Destroyable} from '../destroyable';
 import {AppearanceService} from '../../appearance/appearance-service';
 import {AsyncPipe, NgOptimizedImage} from '@angular/common';
-import {MatIconButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
@@ -12,7 +12,7 @@ import {MatSidenav, MatSidenavContainer, MatSidenavContent} from '@angular/mater
 import {filter, map, Observable, shareReplay, takeUntil} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {mainMenuItems, MenuItem} from './menu';
-import {MatListItem, MatListItemIcon, MatNavList} from '@angular/material/list';
+import {MatDivider, MatListItem, MatListItemIcon, MatNavList} from '@angular/material/list';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {environment} from '../../../environments/environment';
 import {Security} from '../../security/security';
@@ -38,7 +38,9 @@ import {Profile} from '../../security/models';
     MatListItem,
     RouterLink,
     MatListItemIcon,
-    TranslatePipe
+    TranslatePipe,
+    MatDivider,
+    MatButton
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

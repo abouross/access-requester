@@ -2,7 +2,7 @@ import {Component, inject, signal} from '@angular/core';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Destroyable} from '../../components/destroyable';
-import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 import {
   MatCard,
   MatCardActions,
@@ -45,7 +45,8 @@ import {Router} from '@angular/router';
     MatSuffix,
     AsyncPipe,
     MatTooltip,
-    MatProgressBar
+    MatProgressBar,
+    MatError
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
@@ -59,7 +60,7 @@ export class Login extends Destroyable {
   private _router = inject(Router)
 
   protected controls = {
-    username: this._fb.control(null, [Validators.required, Validators.minLength(6)]),
+    username: this._fb.control(null, [Validators.required, Validators.minLength(2)]),
     password: this._fb.control(null, [Validators.required, Validators.minLength(6)])
   }
   protected form = this._fb.group(this.controls);

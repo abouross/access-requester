@@ -9,6 +9,23 @@
     {{ appName() }}
   </a>
 
+  <!--  User menu-->
+  @if (profile()) {
+    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu">
+      <!--      <mat-icon>account_circle</mat-icon>-->
+      <img ngSrc="/user.png" [alt]="profile()?.displayName" height="512" width="512"/>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <h4 mat-menu-item>
+        {{ profile()?.displayName }}
+      </h4>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">Deconnexion</button>
+    </mat-menu>
+    <div class="divider"></div>
+  }
+  <!--  End user menu-->
+
   <!--  Appearance toggler-->
   <button type="button" matIconButton class="appearance-btn" (click)="appearanceService.toggleDarkMode()"
           [matTooltip]="(appearanceService.isDark$|async)?('mode.dark'|translate):('mode.light'|translate)">
@@ -38,19 +55,6 @@
     }
   </select>
   <!--  End language selector-->
-
-  <!--  User menu-->
-  @if (profile()) {
-    <span class="divider"></span>
-    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu">
-      <mat-icon>account_circle</mat-icon>
-      {{ profile()?.displayName }}
-    </button>
-    <mat-menu #userMenu="matMenu">
-      <button mat-menu-item (click)="logout()">Deconnexion</button>
-    </mat-menu>
-  }
-  <!--  End user menu-->
 </mat-toolbar>
 <!--End main toolbar-->
 
