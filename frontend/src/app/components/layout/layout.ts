@@ -4,7 +4,7 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {Destroyable} from '../destroyable';
 import {AppearanceService} from '../../appearance/appearance-service';
 import {AsyncPipe, NgOptimizedImage} from '@angular/common';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
@@ -39,8 +39,7 @@ import {Profile} from '../../security/models';
     RouterLink,
     MatListItemIcon,
     TranslatePipe,
-    MatDivider,
-    MatButton
+    MatDivider
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

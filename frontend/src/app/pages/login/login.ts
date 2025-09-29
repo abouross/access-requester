@@ -18,7 +18,6 @@ import {AppearanceService} from '../../appearance/appearance-service';
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatProgressBar} from '@angular/material/progress-bar';
 import {environment} from '../../../environments/environment';
-import {SECURITY_SCHEMA} from '@angular/compiler';
 import {Security} from '../../security/security';
 import {catchError, finalize, take, takeUntil} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
