@@ -9,5 +9,7 @@ export const environment = {
     showLog: true,
     supportedLanguages: ['en', 'fr'],
     langKey: 'access-requester-language'
-  }
+  },
+  tokenStorageKey: 'access-requester-token',
+  apiBaseUrl: 'http://localhost:8080/api',
 };

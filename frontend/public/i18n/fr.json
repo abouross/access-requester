@@ -16,7 +16,8 @@
   },
   "title": {
     "dashboard": "Tableau de board - {{appName}}",
-    "error": "Erreur {{code}} - {{appName}}"
+    "error": "Erreur {{code}} - {{appName}}",
+    "login": "Connexion- {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -24,6 +25,19 @@
     "unauthorized_method": "Erreur serveur 405.Veuillez remonter à la technique, merci de votre compréhension.",
     "service_unavailable": "La ressource n'est pas disponible, veuillez réessayer plus tard.",
     "not_found": "Erreur serveur 404, resource introuvable. Veuillez remonter à la technique, merci de votre compréhension."
+  },
+  "login": {
+    "welcome": "Bienvenue !",
+    "message": "Connectez-vous pour continuer votre aventure.",
+    "forget_password": "Mot de passe oublié ?",
+    "connect": "Se connecter",
+    "username": "Nom d'utilisateur ou Email",
+    "password": "Mot de passe",
+    "success_message": "Vous êtes connecté avec succès !"
+  },
+  "mode": {
+    "dark": "Mode sombre",
+    "light": "Mode clair"
   },
   "madeby": "Fait avec ♥ par"
 }

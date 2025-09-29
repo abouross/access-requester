@@ -1,0 +1,70 @@
+<form [formGroup]="form" (submit)="login()">
+  <div class="login-container"
+       [class]="{'dark-background':  appearanceService.isDark$|async, 'light-background': !(appearanceService.isDark$|async)}">
+    <mat-card>
+      @if (loading()) {
+        <mat-progress-bar mode="indeterminate"/>
+      }
+      <mat-card-header>
+        <button type="button" matIconButton class="appearance-btn" (click)="appearanceService.toggleDarkMode()"
+                [matTooltip]="(appearanceService.isDark$|async)?('mode.dark'|translate):('mode.light'|translate)">
+          <mat-icon>
+            @if ((appearanceService.isDark$|async) === true) {
+              dark_mode
+            } @else {
+              light_mode
+            }
+          </mat-icon>
+        </button>
+
+        <select class="language-select" [value]="currentLanguage()"
+                (change)="langChange($event)">
+          @if (!currentLanguage() || currentLanguage().trim().length <= 0) {
+            <option></option>
+          }
+          @for (language of environment.translation.supportedLanguages; track language) {
+            <option [value]="language"
+                    [selected]="language === currentLanguage()">
+              {{ 'lang.' + language|translate }}
+            </option>
+          }
+        </select>
+
+        <mat-card-title>
+          {{ 'login.welcome'|translate }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ 'login.message'|translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <!--    Username-->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'login.username'|translate }}</mat-label>
+          <input type="text" matInput formControlName="username"/>
+        </mat-form-field>
+        <!--    End username-->
+
+        <!--    Password-->
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'login.password'|translate }}</mat-label>
+          <input [type]="hidePassword()?'password':'text'" matInput formControlName="password"/>
+          <button type="button" matIconButton matSuffix (click)="togglePassword($event)">
+            <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <!--    End password-->
+
+        <!--Forget password link-->
+        @if (!loading()) {
+          <a href="#" class="forgot-password">{{ 'login.forget_password'|translate }}</a>
+        }
+        <!--End Forget password link-->
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" matButton="tonal" [disabled]="loading() || form.invalid">
+          {{ 'login.connect'|translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</form>

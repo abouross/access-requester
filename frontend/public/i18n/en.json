@@ -16,7 +16,8 @@
   },
   "title": {
     "dashboard": "Dashboard - {{appName}}",
-    "error": "Error {{code}} - {{appName}}"
+    "error": "Error {{code}} - {{appName}}",
+    "login": "Sign in - {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -24,6 +25,19 @@
     "unauthorized_method": "Server error 405. Please escalate to technical support, thank you for your understanding.",
     "service_unavailable": "The resource is not available, please try again later.",
     "not_found": "Server error 404, resource not found. Please escalate to technical support, thank you for your understanding."
+  },
+  "login": {
+    "welcome": "Welcome !",
+    "message": "Log in to continue your adventure.",
+    "forget_password": "Forget password ?",
+    "connect": "Connect",
+    "username": "Username or Email address",
+    "password": "Password",
+    "success_message": "You are successfully logged in!"
+  },
+  "mode": {
+    "dark": "Dark mode",
+    "light": "Light mode"
   },
   "madeby": "Made with ♥ by"
 }

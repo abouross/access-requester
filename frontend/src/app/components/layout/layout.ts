@@ -2,7 +2,7 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {ActivatedRoute, ActivationEnd, Router, RouterLink, RouterOutlet, UrlSegment} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Destroyable} from '../destroyable';
-import {AppearanceService} from './appearance-service';
+import {AppearanceService} from '../../appearance/appearance-service';
 import {AsyncPipe, NgOptimizedImage} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
@@ -72,9 +72,14 @@ export class Layout extends Destroyable implements OnInit {
     this._translate.onLangChange
       .pipe(takeUntil(this.destroy$))
       .subscribe(event => this.currentLanguage.set(event.lang))
+    // Load user profile
+    this._security.profile()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => this.profile.set(result));
   }
 
   protected logout() {
+    this._security.logout()
   }
 
   protected change($event: Event) {
