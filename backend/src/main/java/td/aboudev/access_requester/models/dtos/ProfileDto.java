@@ -10,4 +10,6 @@ public class ProfileDto {
     private final String firstName;
     private final String lastName;
     private final String displayName;
+    private final String title;
+    private final String email;
 }

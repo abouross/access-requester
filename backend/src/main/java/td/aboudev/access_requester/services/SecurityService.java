@@ -61,7 +61,9 @@ public class SecurityService {
                 user.getLastName(),
                 !user.getFirstName().isEmpty() || !user.getLastName().isEmpty() ?
                         user.getFirstName().concat(" ").concat(user.getLastName()) :
-                        user.getUsername()
+                        user.getUsername(),
+                user.getTitle(),
+                user.getEmail()
         );
     }
 }
