@@ -9,43 +9,6 @@
     {{ appName() }}
   </a>
 
-  <!--  User menu-->
-  @if (profile()) {
-    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu" [matTooltip]="profile()?.displayName">
-      <!--      <mat-icon>account_circle</mat-icon>-->
-      <img ngSrc="/user.png" [alt]="profile()?.displayName" height="512" width="512"/>
-    </button>
-    <mat-menu #userMenu="matMenu">
-      <p class="user-info">
-        <span class="user-name">{{ profile()?.displayName }}</span>
-        @if (profile()?.title) {
-          <span class="user-title">{{ profile()?.title }}</span>
-        }
-        <span class="user-account">{{ profile()?.username }} - {{ profile()?.email }}</span>
-      </p>
-      <mat-divider></mat-divider>
-      <a mat-menu-item href="/profile" routerLink="/profile">{{ 'user.profile'|translate }}</a>
-      <button mat-menu-item (click)="logout()">Deconnexion</button>
-    </mat-menu>
-    <div class="divider"></div>
-  }
-  <!--  End user menu-->
-
-  <!--  Appearance toggler-->
-  <button type="button" matIconButton class="appearance-btn" (click)="appearanceService.toggleDarkMode()"
-          [matTooltip]="(appearanceService.isDark$|async)?('mode.dark'|translate):('mode.light'|translate)">
-    <mat-icon>
-      @if ((appearanceService.isDark$|async) === true) {
-        dark_mode
-      } @else {
-        light_mode
-      }
-    </mat-icon>
-  </button>
-  <!--  End Appearance toggler-->
-
-  <span class="divider"></span>
-
   <!--  Language selector-->
   <select class="language-select" [value]="currentLanguage()"
           (change)="change($event)">
@@ -60,6 +23,41 @@
     }
   </select>
   <!--  End language selector-->
+
+  <!--  Appearance toggler-->
+  <button type="button" matIconButton class="appearance-btn" (click)="appearanceService.toggleDarkMode()"
+          [matTooltip]="(appearanceService.isDark$|async)?('mode.dark'|translate):('mode.light'|translate)">
+    <mat-icon>
+      @if ((appearanceService.isDark$|async) === true) {
+        dark_mode
+      } @else {
+        light_mode
+      }
+    </mat-icon>
+  </button>
+  <!--  End Appearance toggler-->
+
+  <!--  User menu-->
+  @if (profile()) {
+    <span class="divider"></span>
+    <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu" [matTooltip]="profile()?.displayName">
+      <img ngSrc="/user.png" [alt]="profile()?.displayName" height="512" width="512"/>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <p class="user-info">
+        <span class="user-name">{{ profile()?.displayName }}</span>
+        @if (profile()?.title) {
+          <span class="user-title">{{ profile()?.title }}</span>
+        }
+        <span class="user-account">{{ profile()?.username }} - {{ profile()?.email }}</span>
+      </p>
+      <mat-divider></mat-divider>
+      <a mat-menu-item href="/profile" routerLink="/profile">{{ 'user.profile'|translate }}</a>
+      <button mat-menu-item (click)="logout()">Deconnexion</button>
+    </mat-menu>
+  }
+  <!--  End user menu-->
+
 </mat-toolbar>
 <!--End main toolbar-->
 

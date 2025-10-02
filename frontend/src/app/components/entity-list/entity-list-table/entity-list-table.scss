@@ -1,0 +1,127 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+:host {
+  display: block;
+
+  mat-progress-bar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .search-form-container {
+    display: flex;
+    flex-direction: row;
+    padding: 16px 16px 0;
+
+    > .search-form {
+      margin-left: auto;
+    }
+  }
+
+  .entity-list-table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    table-layout: auto;
+    white-space: normal;
+    background-color: var(--mat-table-background-color, var(--mat-sys-surface));
+    //Table header
+    & > thead {
+      position: sticky;
+      top: 0;
+      background-color: var(--mat-list-active-indicator-color, var(--mat-sys-secondary-container));
+      z-index: 1;
+
+      & > tr {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        height: var(--mat-table-header-container-height, 56px);
+        color: var(--mat-table-header-headline-color, var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87)));
+        font-family: var(--mat-table-header-headline-font, var(--mat-sys-title-small-font, Roboto, sans-serif));
+        line-height: var(--mat-table-header-headline-line-height, var(--mat-sys-title-small-line-height));
+        font-size: var(--mat-table-header-headline-size, var(--mat-sys-title-small-size, 14px));
+        font-weight: var(--mat-table-header-headline-weight, var(--mat-sys-title-small-weight, 500));
+
+        & > th {
+          border-bottom-color: var(--mat-table-row-item-outline-color, var(--mat-sys-outline, rgba(0, 0, 0, 0.12)));
+          border-bottom-width: var(--mat-table-row-item-outline-width, 1px);
+          border-bottom-style: solid;
+          letter-spacing: var(--mat-table-header-headline-tracking, var(--mat-sys-title-small-tracking));
+          font-weight: inherit;
+          line-height: inherit;
+          box-sizing: border-box;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          outline: none;
+          text-align: left;
+          padding: 0 16px;
+          vertical-align: middle;
+          color: light-dark(var(--mat-sys-on-primary-container), var(--mat-sys-on-secondary-container));
+        }
+      }
+    }
+
+    //End table header
+
+    //Table body
+    & > tbody > tr {
+      -webkit-font-smoothing: antialiased;
+      font-family: var(--mat-table-row-item-label-text-font, var(--mat-sys-body-medium-font, Roboto, sans-serif));
+      line-height: var(--mat-table-row-item-label-text-line-height, var(--mat-sys-body-medium-line-height));
+      font-size: var(--mat-table-row-item-label-text-size, var(--mat-sys-body-medium-size, 14px));
+      font-weight: var(--mat-table-row-item-label-text-weight, var(--mat-sys-body-medium-weight));
+      height: var(--mat-table-row-item-container-height, 52px);
+      color: var(--mat-table-row-item-label-text-color, var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87)));
+
+      & > td {
+        border-bottom-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
+        border-bottom-width: var(--mat-table-row-item-outline-width, 1px);
+        border-bottom-style: solid;
+        letter-spacing: var(--mat-table-row-item-label-text-tracking, var(--mat-sys-body-medium-tracking));
+        line-height: inherit;
+        padding: 0 16px;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+
+        .row-actions {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          button.row-action {
+            margin: 0 .25rem;
+
+            &.error {
+              color: var(--mat-sys-error);
+            }
+
+            &.info {
+              color: light-dark(map.get(mat.$blue-palette, 20), map.get(mat.$blue-palette, 70))
+            }
+
+            &.success {
+              color: green;
+            }
+
+            &.warning {
+              color: orange;
+            }
+          }
+        }
+      }
+    }
+
+    &.row-clickable > tbody > tr:hover {
+      background-color: var(--mat-sys-surface-container);
+      color: var(--mat-sys-on-surface-container);
+      cursor: pointer;
+    }
+
+    //End table body
+  }
+}

@@ -17,7 +17,8 @@
   "title": {
     "dashboard": "Tableau de board - {{appName}}",
     "error": "Erreur {{code}} - {{appName}}",
-    "login": "Connexion- {{appName}}"
+    "login": "Connexion- {{appName}}",
+    "users": "Gestion des utilisateurs - {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -40,7 +41,23 @@
     "light": "Mode clair"
   },
   "user": {
-    "profile": "Profil"
+    "profile": "Profil",
+    "username": "Nom d'utilisateur",
+    "firstName": "Nom",
+    "lastName": "Prénom",
+    "enabled": "Active",
+    "delete": "Supprimer l'utilisateur",
+    "list_title": "Liste des utilisateurs",
+    "edit": "Modifier l'utilisateur"
+  },
+  "search": {
+    "cancel": "Annuler la recherche",
+    "search": "Chercher"
+  },
+  "boolean": {
+    "yes": "OUI",
+    "no": "NON",
+    "na": "N/A"
   },
   "madeby": "Fait avec ♥ par"
 }

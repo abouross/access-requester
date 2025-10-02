@@ -28,6 +28,14 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'users',
+        loadComponent: () => import('./pages/users/users').then(c => c.Users),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.users', {appName: environment.appName})
+        }
+      },
+      {
         path: 'error/:code',
         loadComponent: () => import('./pages/error/error').then(c => c.Error),
         title: (route) => {

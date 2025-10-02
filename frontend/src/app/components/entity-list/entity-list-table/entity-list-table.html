@@ -1,0 +1,63 @@
+@if (loading()) {
+  <mat-progress-bar mode="indeterminate"/>
+}
+
+<!-- Search form -->
+@if (config && config.searchable) {
+  <div class="search-form-container">
+    <form (submit)="refresh()" class="search-form">
+      <mat-form-field appearance="outline">
+        <!--    Display only if search-->
+        @if (searched()) {
+          <button type="button" matIconButton matPrefix class="search-btn" [matTooltip]="'search.cancel'|translate"
+                  [disabled]="loading()"
+                  (click)="cancelSearch()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        }
+        <input matInput type="search" [formControl]="searchCtrl" [placeholder]="'search.search'|translate"/>
+        <button type="submit" matIconButton matSuffix (click)="refresh()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+}
+<!-- End Search form -->
+
+<!--Data table-->
+<table class="entity-list-table" [class.row-clickable]="config && config.onClickRow" matSort
+       (matSortChange)="sortChange($event)">
+  <thead>
+  <tr>
+    @for (col of config?.columns; track col) {
+      <th [mat-sort-header]="col.id" [disabled]="!col.sortable || loading()">{{ col.label|translate }}</th>
+    }
+    @if (hasAction()) {
+      <th>Actions</th>
+    }
+  </tr>
+  </thead>
+  <tbody>
+    @for (item of page()?.content; track $index) {
+      <tr>
+        @for (col of config?.columns; track col) {
+          <td (click)="rowClick(item)" [innerHTML]="displayColumn(col, item)|async"></td>
+        }
+        @if (hasAction()) {
+          <td>
+            <nav class="row-actions">
+              @for (action of config?.rowActions; track action) {
+                <button type="button" class="row-action" [class]="action.status" matIconButton
+                        [matTooltip]="action.title|translate" (click)="rowActionClick(item, action)">
+                  <mat-icon>{{ action.icon }}</mat-icon>
+                </button>
+              }
+            </nav>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
+<!--End data table-->

@@ -17,7 +17,8 @@
   "title": {
     "dashboard": "Dashboard - {{appName}}",
     "error": "Error {{code}} - {{appName}}",
-    "login": "Sign in - {{appName}}"
+    "login": "Sign in - {{appName}}",
+    "users": "User management - {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -40,7 +41,23 @@
     "light": "Light mode"
   },
   "user": {
-    "profile": "Profile"
+    "profile": "Profile",
+    "username": "Username",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "enabled": "Enabled",
+    "delete": "Delete user",
+    "list_title": "Users list",
+    "edit": "Edit user"
+  },
+  "search": {
+    "cancel": "Cancel search",
+    "search": "Search"
+  },
+  "boolean": {
+    "yes": "YES",
+    "no": "NO",
+    "na": "N/A"
   },
   "madeby": "Made with ♥ by"
 }

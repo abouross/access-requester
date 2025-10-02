@@ -1,0 +1,19 @@
+.confirmation-text {
+  text-align: center;
+  font: var(--mat-sys-title-medium);
+  padding: 16px;
+  max-width: 500px;
+  width: 500px;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  padding: 16px;
+
+  & > button {
+    margin: 0 10px;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="entity-list-card">
+  <!--  Header-->
+  <div class="entity-list-card-header">
+    <h4 class="entity-list-card-title">{{ cardTitle }}</h4>
+    <div class="entity-list-card-actions">
+      <button type="button" matIconButton (click)="listTable.refresh()" [disabled]="listTable.loading()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <ng-content select=".card-action"></ng-content>
+    </div>
+  </div>
+  <!--  End header-->
+
+  <!--  Content-->
+  <app-entity-list-table #listTable class="entity-list-card-content" [config]="tableConfig"/>
+  <!--  End content-->
+
+  <!--  Footer-->
+  <div class="entity-list-card-footer">
+    <mat-paginator [length]="listTable.page()?.page?.totalElements" [pageSize]="listTable.pageSize()"
+                   [pageSizeOptions]="pageSizes" (page)="listTable.pageChange($event)"
+                   [showFirstLastButtons]="_showFirstLastButtons()"/>
+  </div>
+  <!--  End footer-->
+</div>

@@ -34,18 +34,6 @@ mat-toolbar#main-toolbar {
     }
   }
 
-  .user-menu {
-    margin-left: auto;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-
-    img {
-      width: 48px;
-      height: 48px;
-    }
-  }
-
   .language-select {
     border-radius: var(--mat-sys-corner-extra-small);
     outline-width: 0;
@@ -56,7 +44,26 @@ mat-toolbar#main-toolbar {
     height: 36px;
     padding: 6px;
     border: 1px solid var(--mat-sys-outline);
-    margin-left: 8px;
+    margin-left: auto;
+    margin-right: 8px;
+  }
+
+  .divider {
+    width: 1px;
+    height: 24px;
+    background-color: #fff;
+    margin: 0 .5rem;
+  }
+
+  .user-menu {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    img {
+      width: 48px;
+      height: 48px;
+    }
   }
 }
 

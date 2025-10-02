@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  padding: 16px;
+  box-sizing: border-box;
+
+  .entity-list-card {
+    width: 100%;
+    height: calc(100vh - var(--mat-toolbar-standard-height, 64px) - 32px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-style: solid;
+    background-color: var(--mat-card-outlined-container-color, var(--mat-sys-surface));
+    border-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
+    border-radius: var(--mat-card-outlined-container-shape, var(--mat-sys-corner-medium));
+    box-shadow: var(--mat-card-outlined-container-elevation, var(--mat-sys-level0));
+    border-width: var(--mat-card-outlined-outline-width, 1px);
+
+    .entity-list-card-header {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+
+      .entity-list-card-title {
+        font: var(--mat-sys-title-large);
+      }
+
+      .entity-list-card-actions {
+        margin-left: auto;
+      }
+    }
+
+    .entity-list-card-content {
+      flex: 1 1 auto;
+      overflow: auto;
+      scroll-behavior: smooth;
+    }
+
+    .entity-list-card-footer {
+      padding: 0 16px;
+    }
+
+  }
+}

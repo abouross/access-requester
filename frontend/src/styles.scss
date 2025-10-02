@@ -47,6 +47,7 @@ html {
 
 /** End snackbar customization **/
 
+/** User info **/
 .user-info {
   margin: 0;
   min-height: 48px;
@@ -71,3 +72,42 @@ html {
     font-style: normal;
   }
 }
+
+/** End user info **/
+
+/** Boolean list type style */
+.boolean-type {
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:before {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0 .2rem;
+  }
+
+  &.yes:before {
+    content: "check";
+    color: green;
+  }
+
+  &.no::before {
+    content: 'cancel';
+    color: var(--mat-sys-error);
+  }
+}
+
+/** End Boolean list type style */
