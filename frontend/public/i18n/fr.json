@@ -59,5 +59,13 @@
     "no": "NON",
     "na": "N/A"
   },
+  "pagination": {
+    "items_per_page": "Éléments par page :",
+    "next_page": "Page suivante",
+    "previous_page": "Page précédente",
+    "first_page": "Première page",
+    "last_page": "Dernière page",
+    "empty_range": "1 sur 1"
+  },
   "madeby": "Fait avec ♥ par"
 }

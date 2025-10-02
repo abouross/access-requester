@@ -59,10 +59,22 @@ mat-toolbar#main-toolbar {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 
     img {
       width: 48px;
       height: 48px;
+      margin-right: 8px;
+    }
+
+    .user-display {
+      font: var(--mat-sys-body-large);
+
+      small {
+        display: block;
+        font: var(--mat-sys-body-small);
+      }
     }
   }
 }

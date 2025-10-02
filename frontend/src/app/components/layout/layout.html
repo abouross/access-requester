@@ -42,6 +42,10 @@
     <span class="divider"></span>
     <button type="button" class="user-menu" [matMenuTriggerFor]="userMenu" [matTooltip]="profile()?.displayName">
       <img ngSrc="/user.png" [alt]="profile()?.displayName" height="512" width="512"/>
+      <h4 class="user-display">
+        {{ profile()?.displayName }}
+        <small>{{ profile()?.title }}</small>
+      </h4>
     </button>
     <mat-menu #userMenu="matMenu">
       <p class="user-info">

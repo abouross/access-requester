@@ -1,9 +1,10 @@
 import {Component, Input, signal} from '@angular/core';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {EntityListTable} from '../entity-list-table/entity-list-table';
 import {EntityListTableConfig} from '../entity-list-table/models';
+import {PaginatorIntl} from '../paginator-intl';
 
 @Component({
   selector: 'app-entity-list-card',
@@ -14,7 +15,10 @@ import {EntityListTableConfig} from '../entity-list-table/models';
     EntityListTable
   ],
   templateUrl: './entity-list-card.html',
-  styleUrl: './entity-list-card.scss'
+  styleUrl: './entity-list-card.scss',
+  providers: [
+    {provide: MatPaginatorIntl, useClass: PaginatorIntl},
+  ]
 })
 export class EntityListCard {
   @Input() cardTitle?: string;
@@ -25,5 +29,5 @@ export class EntityListCard {
   }
 
   protected _showFirstLastButtons = signal(true)
-  protected readonly pageSizes = [20, 50, 100, 200];
+  protected readonly pageSizes = [20, 50, 100, 200]
 }

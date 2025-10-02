@@ -59,5 +59,13 @@
     "no": "NO",
     "na": "N/A"
   },
+  "pagination": {
+    "items_per_page": "Items per page :",
+    "next_page": "Next page",
+    "previous_page": "Previous page",
+    "first_page": "First page",
+    "last_page": "Last page",
+    "empty_range": "1 of 1"
+  },
   "madeby": "Made with ♥ by"
 }
