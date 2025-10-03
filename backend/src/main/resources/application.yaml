@@ -40,9 +40,9 @@ cors:
   cors-headers: ${CORS_HEADERS:*}
 roles:
   map:
-    ADMIN: Administrator
-    USERS_MNGT: Users management
-    SETTINGS: Settings
+    ADMIN: role.administrator
+    USERS_MNGT: role.users_management
+    SETTINGS: role.settings
 ---
 spring:
   config:

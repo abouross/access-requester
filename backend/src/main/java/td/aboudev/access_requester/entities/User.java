@@ -7,6 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "username_unique", columnNames = {"username"}),
+        @UniqueConstraint(name = "email_unique", columnNames = {"email"})
+})
 @Getter
 @Setter
 @Builder
@@ -16,11 +20,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 200, nullable = false, unique = true)
+    @Column(length = 200, nullable = false)
     private String username;
     @Column(length = 200, nullable = false)
     private String password;
-    @Column(length = 200, nullable = false, unique = true)
+    @Column(length = 200, nullable = false)
     private String email;
     @Column(nullable = false)
     private Boolean enabled;

@@ -37,19 +37,12 @@ public class ValidationViolationExceptionHandler {
         return null;
     }
 
-    protected Set<ValidationErrorDto> handleConstraintViolation(ConstraintViolationException e) {
-        var violations = e.getConstraintViolations();
-        return violations
-                .stream()
-                .map(violation -> new ValidationErrorDto(violation.getPropertyPath().toString(), violation.getMessage(), violation.getInvalidValue()))
-                .collect(Collectors.toSet());
-    }
-
     protected Set<ValidationErrorDto> handleDataIntegrityViolation(DataIntegrityViolationException e) {
         Set<ValidationErrorDto> errors = new HashSet<>();
-        Throwable cause = e.getCause();
-        while (!(cause instanceof java.sql.SQLIntegrityConstraintViolationException) && cause != null)
+        Throwable cause = e;
+        while (!(cause instanceof java.sql.SQLIntegrityConstraintViolationException) && cause != null) {
             cause = cause.getCause();
+        }
         if (cause != null) {
             java.sql.SQLIntegrityConstraintViolationException sqlException = (java.sql.SQLIntegrityConstraintViolationException) cause;
             // Find fields in exception message
@@ -70,6 +63,14 @@ public class ValidationViolationExceptionHandler {
                 throw e;
         }
         return errors;
+    }
+
+    protected Set<ValidationErrorDto> handleConstraintViolation(ConstraintViolationException e) {
+        var violations = e.getConstraintViolations();
+        return violations
+                .stream()
+                .map(violation -> new ValidationErrorDto(violation.getPropertyPath().toString(), violation.getMessage(), violation.getInvalidValue()))
+                .collect(Collectors.toSet());
     }
 
     protected Set<ValidationErrorDto> handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
