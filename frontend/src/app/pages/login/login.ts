@@ -1,4 +1,4 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Destroyable} from '../../components/destroyable';
@@ -51,7 +51,7 @@ import {Router} from '@angular/router';
   styleUrl: './login.scss',
   providers: [AppearanceService]
 })
-export class Login extends Destroyable {
+export class Login extends Destroyable implements OnInit {
   private _fb = new FormBuilder().nonNullable
   private _translate = inject(TranslateService)
   private _security = inject(Security)
@@ -70,6 +70,13 @@ export class Login extends Destroyable {
   protected errorMessage = signal('')
   protected fieldErrorMessage = signal<{ [key: string]: string }>({username: '', password: ''})
   protected hasRemoteErrors = signal<boolean>(false)
+
+  ngOnInit() {
+    if (this._security.isAuthenticated())
+      this._router.navigate(['/'])
+        .then(() => {
+        });
+  }
 
   protected login() {
     if (this.form.valid && !this.loading()) {
