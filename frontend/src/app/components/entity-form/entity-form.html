@@ -1,0 +1,75 @@
+<form [formGroup]="form()" (submit)="submit()">
+  <div class="entity-form-card">
+    <!--  Header-->
+    <div class="entity-form-card-header">
+      <button matIconButton (click)="back()">
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+      <h4 class="entity-form-card-title">{{ cardTitle }}</h4>
+      <div class="entity-form-card-actions">
+        <ng-content select=".card-action"></ng-content>
+      </div>
+    </div>
+    <!--  End header-->
+
+    <!--  Content-->
+    <div class="entity-form-card-content">
+      @if (serverError() && serverError().length > 0) {
+        <mat-error>{{ serverError() }}</mat-error>
+      }
+      @if (formControls()) {
+        @for (row of config?.rows; track row) {
+          <div class="row">
+            @for (field of row.fields; track field) {
+              <div [class]="'col-'+field.columns">
+                @if (field.type === 'BOOLEAN') {
+                  <mat-slide-toggle [formControlName]="field.field" labelPosition="before">
+                    {{ field.label|translate }}
+                  </mat-slide-toggle>
+                  <!-- Server field errors-->
+                  @if (serverErrors()[field.field]) {
+                    @for (error of serverErrors()[field.field]; track error) {
+                      <mat-error>{{ error }}</mat-error>
+                    }
+                  }
+                } @else {
+                  <mat-form-field>
+                    <mat-label>{{ field.label|translate }}</mat-label>
+                    @if (field.type === 'SELECT') {
+                      <mat-select [formControlName]="field.field" [multiple]="field.options?.selectMultiple">
+                        @for (option of (field.options?.selectOptions|async); track option) {
+                          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+                        }
+                      </mat-select>
+                    } @else {
+                      <input [type]="field.options?.textType||'text'" [name]="(config?.idPrefix||'')+field.field"
+                             matInput [formControlName]="field.field" autocomplete="off"/>
+                    }
+                    <!-- Server field errors-->
+                    @if (serverErrors()[field.field]) {
+                      @for (error of serverErrors()[field.field]; track error) {
+                        <mat-error>{{ error }}</mat-error>
+                      }
+                    }
+                  </mat-form-field>
+                }
+              </div>
+            }
+          </div>
+        }
+      }
+    </div>
+    <!--  End content-->
+
+    <!--  Footer-->
+    <div class="entity-form-card-footer">
+      <button type="reset" matButton="tonal" [disabled]="!form().dirty || loading()">
+        {{ 'form.reset'|translate }}
+      </button>
+      <button type="submit" matButton="filled" [disabled]="!(!loading() && form().valid)" autofocus>
+        {{ 'form.create'|translate }}
+      </button>
+    </div>
+    <!--  End footer-->
+  </div>
+</form>

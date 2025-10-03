@@ -13,12 +13,16 @@ import {LoadingDialog} from '../../components/loading-dialog/loading-dialog';
 import {LoadingProgressService} from '../../components/loading-progress/loading-progress.service';
 import {EntityListTableConfig} from '../../components/entity-list/entity-list-table/models';
 import {EntityListCard} from '../../components/entity-list/entity-list-card/entity-list-card';
+import {MatIcon} from '@angular/material/icon';
+import {MatIconButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-users',
   imports: [
     EntityListCard,
-    TranslatePipe
+    TranslatePipe,
+    MatIcon,
+    MatIconButton
   ],
   templateUrl: './users.html',
   styleUrl: './users.scss'
@@ -55,7 +59,7 @@ export class Users extends Destroyable implements OnInit {
         status: 'error',
         actionHandle: row => this._translate.get('user.deletion_confirmation', {'user': row.username})
           .pipe(
-            concatMap(title => this._bottomSheet.open(ConfirmationSheet, {data: {title: `Etes-vous sur de supprimer "${row.username}" ?`}})
+            concatMap(title => this._bottomSheet.open(ConfirmationSheet, {data: {title: title}})
               .afterDismissed()),
             concatMap(confirmed => {
               if (confirmed) {
@@ -90,5 +94,11 @@ export class Users extends Destroyable implements OnInit {
   override ngOnDestroy() {
     super.ngOnDestroy();
     this._loadingProgress.setAutoMode(true)
+  }
+
+  protected createForm() {
+    this._router.navigateByUrl('/users/create')
+      .then(() => {
+      });
   }
 }

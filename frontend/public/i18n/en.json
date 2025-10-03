@@ -15,10 +15,10 @@
     "en": "English"
   },
   "title": {
-    "dashboard": "Dashboard - {{appName}}",
-    "error": "Error {{code}} - {{appName}}",
-    "login": "Sign in - {{appName}}",
-    "users": "User management - {{appName}}"
+    "dashboard": "Dashboard | {{appName}}",
+    "error": "Error {{code}} | {{appName}}",
+    "login": "Sign in | {{appName}}",
+    "users": "User management | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -48,7 +48,15 @@
     "enabled": "Enabled",
     "delete": "Delete user",
     "list_title": "Users list",
-    "edit": "Edit user"
+    "create_title": "Create user",
+    "edit": "Edit user",
+    "deletion_confirmation": "Are you sure you want to delete the user '{{user}}' ?",
+    "email": "E-mail",
+    "roles": "Roles",
+    "password": "Password",
+    "title": "Title",
+    "department": "Department",
+    "create_success_message": "User '{{user}}' created successfully !"
   },
   "search": {
     "cancel": "Cancel search",
@@ -66,6 +74,11 @@
     "first_page": "First page",
     "last_page": "Last page",
     "empty_range": "1 of 1"
+  },
+  "form": {
+    "reset": "Reset form",
+    "create": "Create",
+    "update": "Update"
   },
   "madeby": "Made with ♥ by"
 }

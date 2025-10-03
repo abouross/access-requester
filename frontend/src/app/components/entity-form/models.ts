@@ -1,0 +1,35 @@
+import {ValidatorFn} from '@angular/forms';
+import {Observable} from 'rxjs';
+
+export interface FormConfig {
+  backendUrl: string
+  rows: FormRow[]
+  idPrefix?: string
+  postSubmit?: (result: any) => void
+}
+
+export interface FormRow {
+  fields: FormField[]
+}
+
+export interface FormField {
+  field: string
+  type: FieldType
+  label: string
+  columns: number
+  validators?: ValidatorFn | ValidatorFn[]
+  defaultValue?: any
+  options?: {
+    textRows?: number
+    selectOptions?: Observable<SelectOption[]>
+    selectMultiple?: boolean
+    textType?: 'text' | 'number' | 'email' | 'password' | 'url'
+  }
+}
+
+export type FieldType = 'TEXT' | 'BOOLEAN' | 'SELECT'
+
+export interface SelectOption {
+  label: string
+  value: any
+}

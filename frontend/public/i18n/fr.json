@@ -15,10 +15,10 @@
     "en": "English"
   },
   "title": {
-    "dashboard": "Tableau de board - {{appName}}",
-    "error": "Erreur {{code}} - {{appName}}",
-    "login": "Connexion- {{appName}}",
-    "users": "Gestion des utilisateurs - {{appName}}"
+    "dashboard": "Tableau de board | {{appName}}",
+    "error": "Erreur {{code}} | {{appName}}",
+    "login": "Connexion | {{appName}}",
+    "users": "Gestion des utilisateurs | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -48,7 +48,15 @@
     "enabled": "Active",
     "delete": "Supprimer l'utilisateur",
     "list_title": "Liste des utilisateurs",
-    "edit": "Modifier l'utilisateur"
+    "create_title": "Création d'utilisateur",
+    "edit": "Modifier l'utilisateur",
+    "deletion_confirmation": "Etes-vous sur de vouloir supprimer l'utilisateur '{{user}}' ?",
+    "email": "Adresse mail",
+    "roles": "Roles",
+    "password": "Mot de passe",
+    "title": "Titre",
+    "department": "Departement",
+    "create_success_message": "Utilisateur '{{user}}' créé avec succès !"
   },
   "search": {
     "cancel": "Annuler la recherche",
@@ -66,6 +74,11 @@
     "first_page": "Première page",
     "last_page": "Dernière page",
     "empty_range": "1 sur 1"
+  },
+  "form": {
+    "reset": "Réinitialiser le formulaire",
+    "create": "Créer",
+    "update": "Mettre à jour"
   },
   "madeby": "Fait avec ♥ par"
 }

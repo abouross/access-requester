@@ -1,1 +1,5 @@
-<app-entity-list-card [cardTitle]="'user.list_title'|translate" [tableConfig]="tableConfig"/>
+<app-entity-list-card [cardTitle]="'user.list_title'|translate" [tableConfig]="tableConfig">
+  <button type="button" class="card-action" matIconButton (click)="createForm()">
+    <mat-icon>add</mat-icon>
+  </button>
+</app-entity-list-card>

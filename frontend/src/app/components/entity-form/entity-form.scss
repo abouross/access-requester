@@ -1,0 +1,120 @@
+@use "sass:math";
+
+@function divide($dividend, $divisor, $precision: 10) {
+  $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
+  $dividend: abs($dividend);
+  $divisor: abs($divisor);
+  @if $dividend == 0 {
+    @return 0;
+  }
+  @if $divisor == 0 {
+    @error "Cannot divide by 0";
+  }
+  $remainder: $dividend;
+  $result: 0;
+  $factor: 10;
+  @while ($remainder > 0 and $precision >= 0) {
+    $quotient: 0;
+    @while ($remainder >= $divisor) {
+      $remainder: $remainder - $divisor;
+      $quotient: $quotient + 1;
+    }
+    $result: $result * 10 + $quotient;
+    $factor: $factor * .1;
+    $remainder: $remainder * 10;
+    $precision: $precision - 1;
+    @if ($precision < 0 and $remainder >= $divisor * 5) {
+      $result: $result + 1;
+    }
+  }
+  $result: $result * $factor * $sign;
+  $dividend-unit: math.unit($dividend);
+  $divisor-unit: math.unit($divisor);
+  $unit-map: (
+    "px": 1px,
+    "rem": 1rem,
+    "em": 1em,
+    "%": 1%
+  );
+  @if ($dividend-unit != $divisor-unit and map-has-key($unit-map, $dividend-unit)) {
+    $result: $result * map-get($unit-map, $dividend-unit);
+  }
+  @return $result;
+}
+
+:host {
+  display: block;
+  padding: 16px;
+  box-sizing: border-box;
+
+  .entity-form-card {
+    width: 100%;
+    height: calc(100vh - var(--mat-toolbar-standard-height, 64px) - 32px);
+    min-height: 500px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-style: solid;
+    background-color: var(--mat-card-outlined-container-color, var(--mat-sys-surface));
+    border-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
+    border-radius: var(--mat-card-outlined-container-shape, var(--mat-sys-corner-medium));
+    box-shadow: var(--mat-card-outlined-container-elevation, var(--mat-sys-level0));
+    border-width: var(--mat-card-outlined-outline-width, 1px);
+
+    .entity-form-card-header {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      border-bottom-style: solid;
+      border-bottom-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
+      border-bottom-width: var(--mat-card-outlined-outline-width, 1px);
+
+      .entity-form-card-title {
+        font: var(--mat-sys-title-large);
+      }
+
+      .entity-form-card-actions {
+        margin-left: auto;
+      }
+    }
+
+    .entity-form-card-content {
+      flex: 1 1 auto;
+      overflow: auto;
+      scroll-behavior: smooth;
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        @for $i from 1 through 12 {
+          .col-#{$i} {
+            box-sizing: border-box;
+            flex: 0 0 auto;
+            width: math.percentage(divide($i, 12));
+            padding: 16px;
+
+            mat-form-field {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .entity-form-card-footer {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      border-top-style: solid;
+      border-top-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
+      border-top-width: var(--mat-card-outlined-outline-width, 1px);
+
+      & > * {
+        margin: 0 8px;
+      }
+    }
+
+  }
+}

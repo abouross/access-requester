@@ -36,6 +36,10 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'users/create',
+        loadComponent: () => import('./pages/users/create-user/create-user').then(c => c.CreateUser)
+      },
+      {
         path: 'error/:code',
         loadComponent: () => import('./pages/error/error').then(c => c.Error),
         title: (route) => {
