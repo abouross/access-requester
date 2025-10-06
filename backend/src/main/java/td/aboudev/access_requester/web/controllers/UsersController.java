@@ -50,9 +50,7 @@ public class UsersController {
     @GetMapping("/roles-map")
     public Map<String, String> getRolesMap() {
         Map<String, String> rolesMap = new HashMap<>();
-        rolesMapProperties.getMap().forEach((key, value) -> {
-            rolesMap.put(key, translate.trans(value));
-        });
+        rolesMapProperties.getMap().forEach((key, value) -> rolesMap.put(key, translate.trans(value)));
         return rolesMap;
     }
 

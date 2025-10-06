@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 export interface FormConfig {
   backendUrl: string
   rows: FormRow[]
+  formType: FormType
   idPrefix?: string
   postSubmit?: (result: any) => void
 }
@@ -33,3 +34,5 @@ export interface SelectOption {
   label: string
   value: any
 }
+
+export type FormType = 'CREATE' | 'EDIT'

@@ -3,12 +3,12 @@ import {EntityForm} from '../../../components/entity-form/entity-form';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {FormConfig, SelectOption} from '../../../components/entity-form/models';
 import {environment} from '../../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {map, Subject, take, takeUntil} from 'rxjs';
+import {Subject, take, takeUntil} from 'rxjs';
 import {Destroyable} from '../../../components/destroyable';
 import {Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserService} from '../user-service';
 
 @Component({
   selector: 'app-create-user',
@@ -20,7 +20,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrl: './create-user.scss'
 })
 export class CreateUser extends Destroyable implements OnInit {
-  private _http = inject(HttpClient)
+  private _userService = inject(UserService)
   private _translate = inject(TranslateService)
   private _router = inject(Router)
   private _snackBar = inject(MatSnackBar)
@@ -28,6 +28,7 @@ export class CreateUser extends Destroyable implements OnInit {
 
   formConfig: FormConfig = {
     backendUrl: environment.apiBaseUrl + '/users',
+    formType: 'CREATE',
     rows: [
       {
         fields: [
@@ -106,31 +107,18 @@ export class CreateUser extends Destroyable implements OnInit {
   };
 
   ngOnInit() {
-    this._getRolesMap()
+    this._updateRolesMap()
 
     this._translate.onLangChange
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this._getRolesMap()
+        this._updateRolesMap()
       })
   }
 
-  private _getRolesMap() {
-    this._http.get<{
-      [key: string]: string
-    }>(environment.apiBaseUrl + '/users/roles-map')
-      .pipe(
-        takeUntil(this.destroy$),
-        map(rolesMap => {
-          return Object.keys(rolesMap)
-            .map(key => {
-              return {label: rolesMap[key], value: key}
-            })
-        })
-      )
-      .subscribe(rolesMap => {
-        this._rolesMapOptionsSubject.next(rolesMap);
-      })
+  private _updateRolesMap() {
+    this._userService.getRolesMap()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(rolesMap => this._rolesMapOptionsSubject.next(rolesMap))
   }
-
 }

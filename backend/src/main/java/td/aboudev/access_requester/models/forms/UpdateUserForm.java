@@ -16,7 +16,6 @@ public class UpdateUserForm {
     protected String email;
     protected String firstName;
     protected String lastName;
-    @NotBlank
     @Size(min = 6, max = 200)
     protected String password;
     protected List<String> roles;

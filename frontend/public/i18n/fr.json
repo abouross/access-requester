@@ -48,7 +48,8 @@
     "enabled": "Active",
     "delete": "Supprimer l'utilisateur",
     "list_title": "Liste des utilisateurs",
-    "create_title": "Création d'utilisateur",
+    "create_title": "Créer utilisateur",
+    "update_title": "Modifier utilisateur - {{user}}",
     "edit": "Modifier l'utilisateur",
     "deletion_confirmation": "Etes-vous sur de vouloir supprimer l'utilisateur '{{user}}' ?",
     "email": "Adresse mail",
@@ -56,7 +57,8 @@
     "password": "Mot de passe",
     "title": "Titre",
     "department": "Departement",
-    "create_success_message": "Utilisateur '{{user}}' créé avec succès !"
+    "create_success_message": "Utilisateur '{{user}}' créé avec succès !",
+    "update_success_message": "Utilisateur '{{user}}' mis à jour avec succès !"
   },
   "search": {
     "cancel": "Annuler la recherche",

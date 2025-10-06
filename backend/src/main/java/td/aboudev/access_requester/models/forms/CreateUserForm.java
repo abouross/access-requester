@@ -17,7 +17,9 @@ public class CreateUserForm {
     @NotBlank
     @Size(min = 2, max = 100)
     private String email;
+    @Size(min = 2, max = 200)
     private String firstName;
+    @Size(min = 2, max = 200)
     private String lastName;
     @NotBlank
     @Size(min = 6, max = 200)

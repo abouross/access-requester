@@ -4,6 +4,7 @@ import {inject} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Layout} from './components/layout/layout';
 import {authGuard} from './security/auth-guard';
+import {UserService} from './pages/users/user-service';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,7 @@ export const routes: Routes = [
       },
       {
         path: 'users',
+        providers: [UserService],
         loadComponent: () => import('./pages/users/users').then(c => c.Users),
         title: () => {
           const translate = inject(TranslateService);
@@ -37,7 +39,13 @@ export const routes: Routes = [
       },
       {
         path: 'users/create',
+        providers: [UserService],
         loadComponent: () => import('./pages/users/create-user/create-user').then(c => c.CreateUser)
+      },
+      {
+        path: 'users/edit/:id',
+        providers: [UserService],
+        loadComponent: () => import('./pages/users/edit-user/edit-user').then(c => c.EditUser)
       },
       {
         path: 'error/:code',

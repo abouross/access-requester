@@ -5,7 +5,7 @@
       <button matIconButton (click)="back()">
         <mat-icon>arrow_back_ios</mat-icon>
       </button>
-      <h4 class="entity-form-card-title">{{ cardTitle }}</h4>
+      <h4 class="entity-form-card-title">{{ _cardTitle() }}</h4>
       <div class="entity-form-card-actions">
         <ng-content select=".card-action"></ng-content>
       </div>
@@ -14,6 +14,11 @@
 
     <!--  Content-->
     <div class="entity-form-card-content">
+
+      @if (loading()) {
+        <mat-progress-bar mode="indeterminate"/>
+      }
+
       @if (serverError() && serverError().length > 0) {
         <mat-error>{{ serverError() }}</mat-error>
       }
@@ -63,11 +68,13 @@
 
     <!--  Footer-->
     <div class="entity-form-card-footer">
-      <button type="reset" matButton="tonal" [disabled]="!form().dirty || loading()">
-        {{ 'form.reset'|translate }}
-      </button>
+      @if (config && config.formType === 'CREATE') {
+        <button type="reset" matButton="tonal" [disabled]="!form().dirty || loading()">
+          {{ 'form.reset'|translate }}
+        </button>
+      }
       <button type="submit" matButton="filled" [disabled]="!(!loading() && form().valid)" autofocus>
-        {{ 'form.create'|translate }}
+        {{ config ? ((config.formType === 'CREATE' ? 'form.create' : 'form.update') |translate) : '' }}
       </button>
     </div>
     <!--  End footer-->

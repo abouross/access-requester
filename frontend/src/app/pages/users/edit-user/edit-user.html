@@ -1,0 +1,5 @@
+<app-entity-form [cardTitle]="cardTitle()" [config]="formConfig()" (entity)="onEntity($event)">
+  <button type="button" class="card-action" matIconButton (click)="delete()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</app-entity-form>

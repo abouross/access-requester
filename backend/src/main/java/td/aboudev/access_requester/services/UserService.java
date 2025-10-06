@@ -93,7 +93,9 @@ public class UserService {
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        if (form.getPassword() != null && !form.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(form.getPassword()));
+        }
         user.setRoles(form.getRoles());
         user.setEnabled(form.getEnabled());
         user.setTitle(form.getTitle());

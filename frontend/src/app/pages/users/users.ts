@@ -1,20 +1,15 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {catchError, concatMap, finalize, map, of, takeUntil} from 'rxjs';
-import {TranslatePipe, TranslateService} from '@ngx-translate/core';
+import {of, takeUntil} from 'rxjs';
+import {TranslatePipe} from '@ngx-translate/core';
 import {Router} from '@angular/router';
-import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {ConfirmationSheet} from '../../components/confirmation-sheet/confirmation-sheet';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {Destroyable} from '../../components/destroyable';
-import {MatDialog} from '@angular/material/dialog';
-import {LoadingDialog} from '../../components/loading-dialog/loading-dialog';
 import {LoadingProgressService} from '../../components/loading-progress/loading-progress.service';
 import {EntityListTableConfig} from '../../components/entity-list/entity-list-table/models';
 import {EntityListCard} from '../../components/entity-list/entity-list-card/entity-list-card';
 import {MatIcon} from '@angular/material/icon';
 import {MatIconButton} from '@angular/material/button';
+import {UserService} from './user-service';
 
 @Component({
   selector: 'app-users',
@@ -29,12 +24,8 @@ import {MatIconButton} from '@angular/material/button';
 })
 export class Users extends Destroyable implements OnInit {
   private _router = inject(Router)
-  private _bottomSheet = inject(MatBottomSheet)
-  private _translate = inject(TranslateService)
-  private _http = inject(HttpClient)
-  private _snackbar = inject(MatSnackBar)
-  private _dialog = inject(MatDialog)
   private _loadingProgress = inject(LoadingProgressService)
+  private _userService = inject(UserService)
 
   protected tableConfig: EntityListTableConfig = {
     listId: 'users',
@@ -57,32 +48,12 @@ export class Users extends Destroyable implements OnInit {
         title: 'user.delete',
         icon: 'delete',
         status: 'error',
-        actionHandle: row => this._translate.get('user.deletion_confirmation', {'user': row.username})
-          .pipe(
-            concatMap(title => this._bottomSheet.open(ConfirmationSheet, {data: {title: title}})
-              .afterDismissed()),
-            concatMap(confirmed => {
-              if (confirmed) {
-                const loading = this._dialog.open(LoadingDialog, {disableClose: true})
-                return this._http.delete(environment.apiBaseUrl + '/users/' + row.id)
-                  .pipe(
-                    takeUntil(this.destroy$),
-                    catchError(httpError => {
-                      if (httpError instanceof HttpErrorResponse && httpError.status === 400 && httpError.error && httpError.error.message)
-                        this._snackbar.open(
-                          httpError.error.message,
-                          'OK',
-                          {panelClass: 'error-snackbar', horizontalPosition: 'end'}
-                        )
-                      return []
-                    }),
-                    map(() => true),
-                    finalize(() => loading.close())
-                  )
-              }
-              return of(confirmed)
-            })
-          )
+        actionHandle: row => this._userService.deleteUser(
+          row,
+          environment.apiBaseUrl + '/users/' + row.id,
+          'user.deletion_confirmation',
+          {'user': row.username}
+        ).pipe(takeUntil(this.destroy$))
       },
     ]
   }
