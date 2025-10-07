@@ -58,7 +58,8 @@
     "title": "Titre",
     "department": "Departement",
     "create_success_message": "Utilisateur '{{user}}' créé avec succès !",
-    "update_success_message": "Utilisateur '{{user}}' mis à jour avec succès !"
+    "update_success_message": "Utilisateur '{{user}}' mis à jour avec succès !",
+    "delete_success_message": "Utilisateur '{{user}}' supprimé avec succès !"
   },
   "search": {
     "cancel": "Annuler la recherche",

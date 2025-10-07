@@ -167,18 +167,18 @@ export class EditUser extends Destroyable implements OnInit {
 
   protected delete() {
     if (this._entity) {
-      this._userService.deleteUser(
+      const subscription = this._userService.deleteUser(
         this._entity,
         environment.apiBaseUrl + '/users/' + this._entity.id,
-        'user.deletion_confirmation',
-        {'user': this._entity.username}
-      ).pipe(takeUntil(this.destroy$))
-        .subscribe(deleted => {
-          if (deleted)
-            this._router.navigateByUrl('/users')
-              .then(() => {
-              });
-        })
+        {message: 'user.deletion_confirmation', args: {'user': this._entity.username}},
+        {message: 'user.delete_success_message', args: {'user': this._entity.username}}
+      ).subscribe(deleted => {
+        if (deleted)
+          this._router.navigateByUrl('/users')
+            .then(() => {
+            });
+        subscription.unsubscribe()
+      })
     }
   }
 }

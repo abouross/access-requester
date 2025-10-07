@@ -51,8 +51,8 @@ export class Users extends Destroyable implements OnInit {
         actionHandle: row => this._userService.deleteUser(
           row,
           environment.apiBaseUrl + '/users/' + row.id,
-          'user.deletion_confirmation',
-          {'user': row.username}
+          {message: 'user.deletion_confirmation', args: {'user': row.username}},
+          {message: 'user.delete_success_message', args: {'user': row.username}}
         ).pipe(takeUntil(this.destroy$))
       },
     ]

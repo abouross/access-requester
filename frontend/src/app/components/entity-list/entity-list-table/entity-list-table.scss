@@ -96,21 +96,6 @@
           button.row-action {
             margin: 0 .25rem;
 
-            &.error {
-              color: var(--mat-sys-error);
-            }
-
-            &.info {
-              color: light-dark(map.get(mat.$blue-palette, 20), map.get(mat.$blue-palette, 70))
-            }
-
-            &.success {
-              color: green;
-            }
-
-            &.warning {
-              color: orange;
-            }
           }
         }
       }
