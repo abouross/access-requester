@@ -3,7 +3,7 @@ import {JwtToken, Profile} from './models';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
-import {finalize, Observable, tap} from 'rxjs';
+import {BehaviorSubject, finalize, Observable, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,13 @@ export class Security {
   private _token?: JwtToken
   private _http = inject(HttpClient)
   private _router = inject(Router)
+  private _profileSubject = new BehaviorSubject<Profile | undefined>(undefined)
+
+  get profile$(): Observable<Profile | undefined> {
+    if (!this._profileSubject.value)
+      this.updateProfile()
+    return this._profileSubject.asObservable()
+  }
 
   get token() {
     return this._token
@@ -21,6 +28,11 @@ export class Security {
     const token = localStorage.getItem(environment.tokenStorageKey);
     if (token !== null)
       this._token = new JwtToken(token);
+  }
+
+  updateProfile() {
+    this._http.get<Profile>(environment.apiBaseUrl + '/profile')
+      .subscribe(profile => this._profileSubject.next(profile));
   }
 
   hasRoleOrAdmin(requireRole: string) {
@@ -59,9 +71,5 @@ export class Security {
         })
       ).subscribe(() => {
     });
-  }
-
-  profile(): Observable<Profile> {
-    return this._http.get<Profile>(environment.apiBaseUrl + '/profile')
   }
 }

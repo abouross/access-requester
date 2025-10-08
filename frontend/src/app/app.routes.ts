@@ -29,6 +29,14 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'profile',
+        loadComponent: () => import('./pages/profile/profile').then(c => c.Profile),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.profile', {appName: environment.appName})
+        }
+      },
+      {
         path: 'users',
         providers: [UserService],
         loadComponent: () => import('./pages/users/users').then(c => c.Users),

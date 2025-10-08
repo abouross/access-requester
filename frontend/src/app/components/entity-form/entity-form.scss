@@ -84,15 +84,34 @@
       overflow: auto;
       scroll-behavior: smooth;
 
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        @for $i from 1 through 12 {
-          .col-#{$i} {
+      @media (min-width: 960px) {
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          @for $i from 1 through 12 {
+            .col-#{$i} {
+              box-sizing: border-box;
+              flex: 0 0 auto;
+              width: math.percentage(divide($i, 12));
+              padding: 16px;
+
+              mat-form-field {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 959.98px) {
+        .row {
+          display: flex;
+          flex-direction: column;
+
+          [class^='col-'] {
             box-sizing: border-box;
-            flex: 0 0 auto;
-            width: math.percentage(divide($i, 12));
             padding: 16px;
+            width: 100%;
 
             mat-form-field {
               width: 100%;
@@ -100,6 +119,7 @@
           }
         }
       }
+
     }
 
     .entity-form-card-footer {

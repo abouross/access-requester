@@ -18,7 +18,8 @@
     "dashboard": "Dashboard | {{appName}}",
     "error": "Error {{code}} | {{appName}}",
     "login": "Sign in | {{appName}}",
-    "users": "User management | {{appName}}"
+    "users": "User management | {{appName}}",
+    "profile": "Profile | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -82,6 +83,16 @@
     "reset": "Reset form",
     "create": "Create",
     "update": "Update"
+  },
+  "profile": {
+    "personal_info": "Personal information",
+    "save": "Save",
+    "password_update": "Update password",
+    "password": "Password",
+    "new_password": "New password",
+    "change": "Change",
+    "update_success": "Profile update successfully !",
+    "password_update_success": "Password update successfully !"
   },
   "madeby": "Made with ♥ by"
 }

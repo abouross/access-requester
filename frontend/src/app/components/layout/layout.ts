@@ -74,9 +74,12 @@ export class Layout extends Destroyable implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(event => this.currentLanguage.set(event.lang))
     // Load user profile
-    this._security.profile()
+    this._security.profile$
       .pipe(takeUntil(this.destroy$))
-      .subscribe(result => this.profile.set(result));
+      .subscribe(result => {
+        if (result)
+          this.profile.set(result)
+      });
   }
 
   protected logout() {

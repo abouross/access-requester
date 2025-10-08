@@ -18,7 +18,8 @@
     "dashboard": "Tableau de board | {{appName}}",
     "error": "Erreur {{code}} | {{appName}}",
     "login": "Connexion | {{appName}}",
-    "users": "Gestion des utilisateurs | {{appName}}"
+    "users": "Gestion des utilisateurs | {{appName}}",
+    "profile": "Profil | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -82,6 +83,16 @@
     "reset": "Réinitialiser le formulaire",
     "create": "Créer",
     "update": "Mettre à jour"
+  },
+  "profile": {
+    "personal_info": "Information personnelle",
+    "save": "Enregistrer",
+    "password_update": "Changer votre mot de passe",
+    "password": "Mot de passe",
+    "new_password": "Nouveau mot de passe",
+    "change": "Changer",
+    "update_success": "Votre profil a été mis à jour avec succès !",
+    "password_update_success": "Votre Mot de passe a été changé avec succès !"
   },
   "madeby": "Fait avec ♥ par"
 }
