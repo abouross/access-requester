@@ -1,7 +1,6 @@
 package td.aboudev.access_requester.services;
 
 import io.jsonwebtoken.JwtBuilder;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;

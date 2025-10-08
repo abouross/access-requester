@@ -192,7 +192,7 @@ export class Profile extends Destroyable implements OnInit {
           }),
           finalize(() => this._postSubmit())
         )
-        .subscribe(userDetails => {
+        .subscribe(() => {
           this.passwordForm().reset()
           this._translate.get('profile.password_update_success')
             .pipe(take(1))
