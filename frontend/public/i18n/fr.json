@@ -94,5 +94,16 @@
     "update_success": "Votre profil a été mis à jour avec succès !",
     "password_update_success": "Votre Mot de passe a été changé avec succès !"
   },
+  "dashboard": {
+    "title": "Tableau de board",
+    "all_requests_title": "Toutes les demandes",
+    "requests_title": "Mes demandes",
+    "flows_title": "Flux de validations"
+  },
+  "status": {
+    "enabled": "Actives",
+    "disabled": "Inactives",
+    "all": "Tout"
+  },
   "madeby": "Fait avec ♥ par"
 }

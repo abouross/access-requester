@@ -1,0 +1,23 @@
+.dashboard-container {
+  height: calc(100vh - var(--mat-toolbar-standard-height, 64px));
+  overflow: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  .dashboard-title {
+    font: var(--mat-sys-headline-medium);
+    padding: 0 20px;
+    //border-bottom: solid var(--mat-card-outlined-outline-width, 1px) var(--mat-sys-outline, var(--mat-sys-outline-variant));
+    line-height: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--mat-list-active-indicator-color, var(--mat-sys-secondary-container));
+    color: var(--mat-list-list-item-label-text-color, var(--mat-sys-on-surface));
+    border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+    --mat-focus-indicator-border-radius: var(--mat-list-active-indicator-shape, var(--mat-sys-corner-full));
+  }
+}

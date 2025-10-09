@@ -94,5 +94,16 @@
     "update_success": "Profile update successfully !",
     "password_update_success": "Password update successfully !"
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "all_requests_title": "All requests",
+    "requests_title": "My requests",
+    "flows_title": "Validations Flows"
+  },
+  "status": {
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "all": "All"
+  },
   "madeby": "Made with ♥ by"
 }

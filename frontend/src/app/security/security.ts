@@ -72,4 +72,10 @@ export class Security {
       ).subscribe(() => {
     });
   }
+
+  isAdmin() {
+    if (!this._token || !this._token.roles)
+      return false
+    return this._token.roles.some(role => role === 'ADMIN')
+  }
 }

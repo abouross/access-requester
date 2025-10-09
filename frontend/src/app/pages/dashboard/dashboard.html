@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <h1 class="dashboard-title">{{ 'dashboard.title'|translate }}</h1>
+  <mat-grid-list [cols]="(isHandset$|async)==true?1:(security.isAdmin()?4:2)"
+                 [rowHeight]="(tileOrientation$|async)==='horizontal'?'2:1' :'300px'">
+    <!--    Access requests tiles-->
+    <mat-grid-tile>
+      <app-access-request-counts/>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-access-request-counts [all]="true"/>
+    </mat-grid-tile>
+    <!--    End Access requests tiles-->
+
+    <!--  Administrator tiles-->
+    @if (security.isAdmin()) {
+      <mat-grid-tile>
+        <app-users-counts [orientation]="(tileOrientation$|async)"/>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-flows-counts/>
+      </mat-grid-tile>
+    }
+    <!--  End Administrator tiles-->
+  </mat-grid-list>
+</div>

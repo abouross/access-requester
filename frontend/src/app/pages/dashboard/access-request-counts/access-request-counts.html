@@ -1,0 +1,14 @@
+<mat-card class="dashboard-card">
+  <mat-card-header>
+    <mat-card-title>
+      @if (all) {
+        {{ 'dashboard.all_requests_title'|translate }}
+      } @else {
+        {{ 'dashboard.requests_title'|translate }}
+      }
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    Counts
+  </mat-card-content>
+</mat-card>

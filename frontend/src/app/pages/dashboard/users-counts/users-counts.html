@@ -1,0 +1,25 @@
+@if (security.isAdmin()) {
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>Utilisateurs</mat-card-title>
+      <div class="action-buttons">
+        <button type="button" mat-icon-button [matTooltip]="'refresh'|translate" [disabled]="loading()"
+                (click)="refresh()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-card-content [class]="_orientation()">
+      @if (loading()) {
+        <mat-spinner diameter="50"/>
+      } @else if (counts()) {
+        @for (grouped of counts(); track grouped) {
+          <div class="count-item" [class]="getStatusClass(grouped)">
+            <span class="count" [class]="getFontSizeClasses(grouped.count)">{{ grouped.count }}</span>
+            <span class="label">{{ 'status.' + grouped.groupKey |translate }}</span>
+          </div>
+        }
+      }
+    </mat-card-content>
+  </mat-card>
+}

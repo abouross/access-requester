@@ -133,6 +133,12 @@ public class UserService {
      * @return list of statues with counts
      */
     public List<GroupedResult> counts() {
-        return userRepository.countByStatus();
+        List<GroupedResult> result = userRepository.countByStatus();
+        long allCount = 0;
+        for (GroupedResult groupedResult : result) {
+            allCount += groupedResult.getCount();
+        }
+        result.add(new GroupedResult("all", allCount));
+        return result;
     }
 }
