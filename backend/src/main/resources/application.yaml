@@ -26,6 +26,7 @@ spring:
 jwt:
   secret: ${JWT_SECRET:31caa6c741b5109f522fc6ca620dc50e8377c0c919c7e3353874aa3c2334cec7}
   expiration: ${JWT_EXPIRATION:3600000} # Time in milliseconds - 3600000 = 1h
+  blacklist-clean: ${JWT_BLACKLIST_CLEAN:0 0 1 * * *} # every day at 1 am
 #Logging
 server:
   error:
@@ -66,3 +67,5 @@ logging:
     td.aboudev: trace
 cors:
   cors-origins: '*'
+jwt:
+  blacklist-clean: '0 */5 * * * *'
