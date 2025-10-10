@@ -44,6 +44,7 @@ roles:
     ADMIN: role.administrator
     USERS_MNGT: role.users_management
     SETTINGS: role.settings
+db_referenced_row_error: ${DB_ER_NO_REFERENCED_ROW:1451} # 1451 for mysql8
 ---
 spring:
   config:
