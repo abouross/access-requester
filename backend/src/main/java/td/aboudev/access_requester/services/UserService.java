@@ -58,6 +58,38 @@ public class UserService {
     }
 
     /**
+     * List actives users only with pagination & search
+     *
+     * @param search   search key
+     * @param pageable pagination query sort, page size and page number
+     * @return page of users list
+     */
+    public PageModel<UserDto.List> activeList(String search, Pageable pageable) {
+        if (search == null || search.trim().isEmpty()) {
+            return new PageModel<>(
+                    userRepository.findAllByEnabledTrue(pageable)
+                            .map(UserDto.List::newInstance)
+            );
+        }
+        User user = new User();
+        user.setFirstName(search);
+        user.setLastName(search);
+        user.setUsername(search);
+        user.setEmail(search);
+        user.setEnabled(true);
+
+        ExampleMatcher matcher = ExampleMatcher.matchingAny()
+                .withIgnoreCase()
+                .withIgnoreNullValues()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        Example<User> example = Example.of(user, matcher);
+        return new PageModel<>(
+                userRepository.findAll(example, pageable)
+                        .map(UserDto.List::newInstance)
+        );
+    }
+
+    /**
      * Create new user
      *
      * @param from user form

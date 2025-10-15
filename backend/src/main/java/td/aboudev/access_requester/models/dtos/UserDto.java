@@ -14,6 +14,7 @@ public class UserDto {
         protected final String lastName;
         protected final Boolean enabled;
         protected final String displayName;
+        private final String title;
 
         public static List newInstance(User user) {
             return new List(
@@ -22,7 +23,8 @@ public class UserDto {
                     user.getFirstName(),
                     user.getLastName(),
                     user.getEnabled(),
-                    user.display()
+                    user.display(),
+                    user.getTitle()
             );
         }
     }
@@ -30,14 +32,12 @@ public class UserDto {
     @Getter
     public static class Details extends List {
         private final String email;
-        private final String title;
         private final String department;
         private final java.util.List<String> roles;
 
         public Details(Long id, String username, String firstName, String lastName, Boolean enabled, String display, String email, String title, String department, java.util.List<String> roles) {
-            super(id, username, firstName, lastName, enabled, display);
+            super(id, username, firstName, lastName, enabled, display, title);
             this.email = email;
-            this.title = title;
             this.department = department;
             this.roles = roles;
         }

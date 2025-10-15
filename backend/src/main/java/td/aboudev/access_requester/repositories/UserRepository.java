@@ -26,5 +26,7 @@ public interface UserRepository extends Repository<User, Long> {
 
     @Query("SELECT new td.aboudev.access_requester.models.GroupedResult(u.enabled, COUNT(u)) FROM User u GROUP BY u.enabled")
     List<GroupedResult> countByStatus();
+
+    Page<User> findAllByEnabledTrue(Pageable pageable);
 }
 
