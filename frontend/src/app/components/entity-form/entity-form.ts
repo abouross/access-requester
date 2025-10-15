@@ -13,16 +13,15 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormBuilder, FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MatIcon} from '@angular/material/icon';
-import {AsyncPipe, Location} from '@angular/common';
-import {FormConfig} from './models';
+import {Location} from '@angular/common';
+import {FormConfig, ServerErrors} from './models';
 import {Destroyable} from '../destroyable';
-import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatOption, MatSelect} from '@angular/material/select';
-import {MatSlideToggle} from '@angular/material/slide-toggle';
+import {MatError} from '@angular/material/form-field';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, finalize, Observable, takeUntil} from 'rxjs';
 import {MatProgressBar} from '@angular/material/progress-bar';
+import {EntityFormRows} from './entity-form-rows/entity-form-rows';
+import {getServerErrors} from './form-utils';
 
 @Component({
   selector: 'app-entity-form',
@@ -33,14 +32,8 @@ import {MatProgressBar} from '@angular/material/progress-bar';
     MatIcon,
     ReactiveFormsModule,
     MatError,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatSelect,
-    AsyncPipe,
-    MatOption,
-    MatSlideToggle,
-    MatProgressBar
+    MatProgressBar,
+    EntityFormRows
   ],
   templateUrl: './entity-form.html',
   styleUrl: './entity-form.scss'
@@ -64,7 +57,7 @@ export class EntityForm extends Destroyable implements OnChanges {
     }
     return this._formBuilder.group({})
   })
-  protected serverErrors = signal<{ [field: string]: string[] }>({})
+  protected serverErrors = signal<ServerErrors>({})
   protected serverError = signal('')
 
   ngOnChanges(changes: SimpleChanges) {
@@ -99,17 +92,8 @@ export class EntityForm extends Destroyable implements OnChanges {
           takeUntil(this.destroy$),
           catchError(httpError => {
             if (httpError instanceof HttpErrorResponse && httpError.status === 400) {
-              if (Array.isArray(httpError.error)) {
-                const errors: { [field: string]: string[] } = {}
-                httpError.error.forEach(error => {
-                  if (errors[error.field] && Array.isArray(errors[error.field])) {
-                    errors[error.field].push(error.message)
-                  } else {
-                    errors[error.field] = [error.message]
-                  }
-                })
-                this.serverErrors.set(errors)
-              } else if (httpError.error && httpError.error.message)
+              this.serverErrors.set(getServerErrors(httpError))
+              if (httpError.error && httpError.error.message)
                 this.serverError.set(httpError.error.message)
             }
             throw httpError

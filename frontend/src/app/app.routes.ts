@@ -36,6 +36,7 @@ export const routes: Routes = [
           return translate.get('title.profile', {appName: environment.appName})
         }
       },
+      /** Users **/
       {
         path: 'users',
         providers: [UserService],
@@ -55,6 +56,29 @@ export const routes: Routes = [
         providers: [UserService],
         loadComponent: () => import('./pages/users/edit-user/edit-user').then(c => c.EditUser)
       },
+      /** End Users **/
+
+      /** Validation contexts **/
+      {
+        path: 'settings/contexts',
+        loadComponent: () => import('./pages/settings/validation-contexts/validation-contexts').then(c => c.ValidationContexts),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.validation_contexts', {appName: environment.appName})
+        },
+        children: [
+          {
+            path: 'create',
+            loadComponent: () => import('./pages/settings/validation-contexts/create-context/create-context').then(c => c.CreateContext)
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () => import('./pages/settings/validation-contexts/edit-context/edit-context').then(c => c.EditContext)
+          }
+        ]
+      },
+      /** End Validation contexts **/
+
       {
         path: 'error/:code',
         loadComponent: () => import('./pages/error/error').then(c => c.Error),

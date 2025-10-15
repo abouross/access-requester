@@ -1,0 +1,45 @@
+@if (rows && formControls) {
+  @for (row of rows; track row) {
+    <div class="row">
+      @for (field of row.fields; track field) {
+        <div [class]="'col-'+field.columns">
+          @if (field.type === 'BOOLEAN') {
+            <mat-slide-toggle [formControl]="formControls[field.field]" labelPosition="before">
+              {{ field.label|translate }}
+            </mat-slide-toggle>
+            <!-- Server field errors-->
+            @if (serverErrors[field.field]) {
+              @for (error of serverErrors[field.field]; track error) {
+                <mat-error>{{ error }}</mat-error>
+              }
+            }
+          } @else {
+            <mat-form-field>
+              <mat-label>{{ field.label|translate }}</mat-label>
+              @if (field.type === 'SELECT') {
+                <mat-select [formControl]="formControls[field.field]" [multiple]="field.options?.selectMultiple">
+                  @for (option of (field.options?.selectOptions|async); track option) {
+                    <mat-option [value]="option.value">{{ option.label }}</mat-option>
+                  }
+                </mat-select>
+              } @else if (field.type === 'TEXTAREA') {
+                <textarea [name]="(idPrefix||'')+field.field" matInput
+                          [formControl]="formControls[field.field]"
+                          [rows]="(field.options && field.options.textRows) || 10"></textarea>
+              } @else {
+                <input [type]="field.options?.textType||'text'" [name]="(idPrefix||'')+field.field"
+                       matInput [formControl]="formControls[field.field]" autocomplete="off"/>
+              }
+              <!-- Server field errors-->
+              @if (serverErrors[field.field]) {
+                @for (error of serverErrors[field.field]; track error) {
+                  <mat-error>{{ error }}</mat-error>
+                }
+              }
+            </mat-form-field>
+          }
+        </div>
+      }
+    </div>
+  }
+}

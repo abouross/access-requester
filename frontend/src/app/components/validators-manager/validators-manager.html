@@ -1,0 +1,49 @@
+<fieldset class="validators-container">
+  <legend> {{ title }}</legend>
+  <!--Error Message-->
+  @if (errorMessage().trim().length > 0) {
+    <mat-error>{{ errorMessage() }}</mat-error>
+  }
+  <!--  !End error message-->
+
+  <!--Add validator form-->
+  <div class="validator-form" [class.has-error]="errorMessage().trim().length > 0">
+    <app-user-input [backendUrl]="usersBackendUrl" [formControl]="userCtrl()"/>
+    <button type="button" matButton="filled" [disabled]="!(userCtrl().valid && !loading() && userCtrl().enabled)"
+            (click)="addValidator()">
+      {{ 'validators.add'|translate }}
+    </button>
+  </div>
+  <!--End add validator form-->
+
+  <!--Validators list-->
+  @if (validators) {
+    <div class="validators-list-container">
+      @if (loading()) {
+        <div class="spinner-container">
+          <mat-progress-spinner mode="indeterminate"/>
+        </div>
+      }
+      <mat-list cdkDropList (cdkDropListDropped)="drop($event)">
+        @for (validator of validators; track validator.id; let last = $last) {
+          <mat-list-item cdkDrag>
+            <span matListItemIcon>{{ validator.position }}</span>
+            <div matListItemTitle>{{ displayUser(validator.validator) }}</div>
+            <div matListItemLine>{{ validator.validator.title }}</div>
+            <div matListItemMeta>
+              <button type="button" class="delete-validator-btn" matIconButton (click)="deleteValidator(validator)"
+                      [matTooltip]="'validators.delete'|translate" [disabled]="loading()">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+          @if (!last) {
+            <mat-divider/>
+          }
+        }
+      </mat-list>
+    </div>
+  }
+  <!--End validators list-->
+
+</fieldset>

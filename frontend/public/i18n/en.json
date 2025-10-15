@@ -19,7 +19,8 @@
     "error": "Error {{code}} | {{appName}}",
     "login": "Sign in | {{appName}}",
     "users": "User management | {{appName}}",
-    "profile": "Profile | {{appName}}"
+    "profile": "Profile | {{appName}}",
+    "validation_contexts": "Validation contexts management | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -105,5 +106,24 @@
     "disabled": "Disabled",
     "all": "All"
   },
+  "contexts": {
+    "name": "Context name",
+    "enabled": "Status",
+    "title": "Validation contexts",
+    "description": "Context description",
+    "creation_success": "'{{context}}' created successfully.",
+    "update_success": "'{{context}}' updated successfully.",
+    "validators": {
+      "title": "Permanents validators"
+    }
+  },
+  "validators": {
+    "add": "Add",
+    "delete": "Delete validator",
+    "add_success": "Validator added successfully !"
+  },
+  "refresh": "Refresh",
+  "create": "Create",
+  "close": "Close",
   "madeby": "Made with ♥ by"
 }

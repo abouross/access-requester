@@ -1,0 +1,15 @@
+@if (user() && !_disabled) {
+  <mat-icon class="delete-icon" (click)="unselectUser()">delete</mat-icon>
+}
+
+@if (user()) {
+  <span class="user-display" [matTooltip]="displayUser()">{{ displayUser() }}</span>
+}
+
+@if (!user() && placeholder) {
+  <span class="placeholder">{{ placeholder }}</span>
+}
+
+@if (!_disabled) {
+  <mat-icon class="search-icon" (click)="usersDialog()">search</mat-icon>
+}

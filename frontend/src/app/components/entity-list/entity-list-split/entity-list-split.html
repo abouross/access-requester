@@ -1,0 +1,25 @@
+<div class="entity-list-split-container">
+  <!--  Left sie-->
+  <div class="left-side">
+    <app-entity-list-table #listTable [config]="tableConfig"/>
+  </div>
+  <!--  ENd left side-->
+  <div class="entity-list-split-divider"></div>
+  <!--  Right side-->
+  <div class="right-side">
+    <div class="entity-list-split-header">
+      <h4 class="entity-list-split-title">{{ title }}</h4>
+      <div class="entity-list-split-actions">
+        <button type="button" matIconButton (click)="listTable.refresh()" [disabled]="listTable.loading()"
+                [matTooltip]="'refresh'|translate">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <ng-content select=".split-action"></ng-content>
+      </div>
+    </div>
+    <div class="entity-list-split-content">
+      <ng-content select="router-outlet"/>
+    </div>
+  </div>
+  <!--  End right side-->
+</div>

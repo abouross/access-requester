@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  width: 212px;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--mat-form-field-filled-container-shape, var(--mat-sys-corner-extra-small));
+  border: 1px solid var(--mat-form-field-filled-active-indicator-color, var(--mat-sys-outline-variant));
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  .delete-icon, .search-icon {
+    cursor: pointer;
+  }
+
+  .delete-icon {
+    color: var(--mat-sys-error);
+  }
+
+  .user-display, .placeholder {
+    flex: 1;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .search-icon {
+    margin-left: auto;
+  }
+}

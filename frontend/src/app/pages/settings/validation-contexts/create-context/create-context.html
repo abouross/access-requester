@@ -1,0 +1,17 @@
+@if (loading()) {
+  <mat-progress-bar mode="indeterminate"/>
+}
+<!--Context Form-->
+<form [formGroup]="form" (submit)="create()">
+  <app-entity-form-rows [formControls]="formControls" [rows]="rows" [serverErrors]="serverErrors()"
+                        idPrefix="context_"/>
+  <div class="actions">
+    <button type="reset" matButton="tonal" [disabled]="!form.dirty || loading()">
+      {{ 'form.reset'|translate }}
+    </button>
+    <button type="submit" matButton="filled" [disabled]="!(!loading() && form.valid)" autofocus>
+      {{ 'form.create' |translate }}
+    </button>
+  </div>
+</form>
+<!--End context form-->

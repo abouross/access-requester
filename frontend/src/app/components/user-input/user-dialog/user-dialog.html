@@ -1,0 +1,10 @@
+<mat-dialog-content>
+  <app-entity-list-table #listTable [config]="listConfig"/>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <mat-paginator [length]="listTable.page()?.page?.totalElements" [pageSize]="listTable.pageSize()"
+                 [pageSizeOptions]="pageSizes" (page)="listTable.pageChange($event)" [showFirstLastButtons]="showFirstLastButtons(listTable)"/>
+  <button matButton="outlined" mat-dialog-close cdkFocusInitial="">
+    {{ 'close'|translate }}
+  </button>
+</mat-dialog-actions>

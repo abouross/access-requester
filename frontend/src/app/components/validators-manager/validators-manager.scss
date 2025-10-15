@@ -1,0 +1,88 @@
+@use '@angular/material' as mat;
+
+.validators-container {
+  height: 450px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  box-sizing: border-box;
+  border-radius: var(--mat-card-outlined-container-shape, var(--mat-sys-corner-medium));
+  padding: 0 10px 10px;
+  overflow: auto;
+  position: relative;
+  z-index: 1;
+
+  legend {
+    font: var(--mat-sys-title-medium);
+  }
+
+  mat-error {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--mat-sys-surface);
+    z-index: 2;
+  }
+
+  .validator-form {
+    position: sticky;
+    top: 0;
+
+    &.has-error {
+      top: 42px;
+    }
+
+    background-color: var(--mat-sys-surface);
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 16px;
+
+    app-user-input {
+      flex-grow: 1;
+      max-width: 500px;
+    }
+
+    button {
+      margin-left: .5rem;
+    }
+  }
+
+  .validators-list-container {
+    margin: 1rem 0;
+    min-height: 120px;
+    position: relative;
+    z-index: 1;
+
+    mat-list {
+      z-index: 1;
+    }
+
+    .spinner-container {
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: light-dark(rgba(0, 0, 0, .35), rgba(255, 255, 255, .35));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--mat-form-field-filled-container-shape, var(--mat-sys-corner-extra-small));
+    }
+
+    mat-list-item {
+      &:hover {
+        cursor: grab;
+      }
+
+      [matIconButton].delete-validator-btn {
+        @include mat.icon-button-overrides((icon-color: var(--mat-sys-error)))
+      }
+    }
+  }
+}

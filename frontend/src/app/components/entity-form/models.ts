@@ -28,7 +28,7 @@ export interface FormField {
   }
 }
 
-export type FieldType = 'TEXT' | 'BOOLEAN' | 'SELECT'
+export type FieldType = 'TEXT' | 'BOOLEAN' | 'SELECT' | 'TEXTAREA'
 
 export interface SelectOption {
   label: string
@@ -36,3 +36,7 @@ export interface SelectOption {
 }
 
 export type FormType = 'CREATE' | 'EDIT'
+
+export interface ServerErrors {
+  [field: string]: string[]
+}

@@ -19,7 +19,8 @@
     "error": "Erreur {{code}} | {{appName}}",
     "login": "Connexion | {{appName}}",
     "users": "Gestion des utilisateurs | {{appName}}",
-    "profile": "Profil | {{appName}}"
+    "profile": "Profil | {{appName}}",
+    "validation_contexts": "Gestion des contextes de validation | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -105,5 +106,24 @@
     "disabled": "Inactives",
     "all": "Tout"
   },
+  "contexts": {
+    "name": "Nom du contexte",
+    "enabled": "Statut",
+    "title": "Contextes de validation",
+    "description": "Description du contexte",
+    "creation_success": "'{{context}}' créé avec succès.",
+    "update_success": "'{{context}}' mis à jour avec succès.",
+    "validators": {
+      "title": "Validateurs permanents"
+    }
+  },
+  "validators": {
+    "add": "Ajouter",
+    "delete": "Supprimer le validateur",
+    "add_success": "Validateur ajouté avec succès !"
+  },
+  "refresh": "Actualiser",
+  "create": "Créer",
+  "close": "Fermer",
   "madeby": "Fait avec ♥ par"
 }

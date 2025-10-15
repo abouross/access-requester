@@ -86,7 +86,7 @@ mat-sidenav-container#main-sidenav-container {
 
   //Menu
   mat-sidenav#main-sidenav {
-    --main-sidenav-border: solid 1px var(--mat-sys-outline);
+    --main-sidenav-border: solid 1px var(--mat-sys-outline-variant);
     padding-top: var(--mat-toolbar-standard-height, 64px);
     width: 300px;
     border-radius: 0;
@@ -126,7 +126,7 @@ mat-sidenav-container#main-sidenav-container {
           bottom: 0;
           left: calc(var(--mat-list-list-item-leading-icon-start-space, 16px) + (var(--mat-list-list-item-leading-icon-size, 24px) / 2));
           width: 1px;
-          background-color: var(--mat-sys-outline);
+          background-color: var(--mat-sys-outline-variant);
         }
       }
     }

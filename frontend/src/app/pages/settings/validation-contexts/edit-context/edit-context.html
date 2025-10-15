@@ -1,0 +1,21 @@
+@if (loading()) {
+  <mat-progress-bar mode="indeterminate"/>
+}
+<!--Context form-->
+<form [formGroup]="form()" (submit)="update()">
+  @if ((formControls()|keyvalue).length > 0) {
+    <app-entity-form-rows [formControls]="formControls()" [rows]="rows" [serverErrors]="serverErrors()"
+                          idPrefix="context_"/>
+  }
+  <div class="actions">
+    <button type="submit" matButton="filled" [disabled]="!(!loading() && form().valid)" autofocus>
+      {{ 'form.update' |translate }}
+    </button>
+  </div>
+</form>
+<!--End context form-->
+
+<!--Permanent validators-->
+<app-validators-manager [title]="'contexts.validators.title'|translate" [backendUrl]="getValidatorUrl()"
+                        [validators]="getValidators()"/>
+<!--End permanent validators-->

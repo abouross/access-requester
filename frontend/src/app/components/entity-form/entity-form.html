@@ -23,45 +23,8 @@
         <mat-error>{{ serverError() }}</mat-error>
       }
       @if (formControls()) {
-        @for (row of config?.rows; track row) {
-          <div class="row">
-            @for (field of row.fields; track field) {
-              <div [class]="'col-'+field.columns">
-                @if (field.type === 'BOOLEAN') {
-                  <mat-slide-toggle [formControlName]="field.field" labelPosition="before">
-                    {{ field.label|translate }}
-                  </mat-slide-toggle>
-                  <!-- Server field errors-->
-                  @if (serverErrors()[field.field]) {
-                    @for (error of serverErrors()[field.field]; track error) {
-                      <mat-error>{{ error }}</mat-error>
-                    }
-                  }
-                } @else {
-                  <mat-form-field>
-                    <mat-label>{{ field.label|translate }}</mat-label>
-                    @if (field.type === 'SELECT') {
-                      <mat-select [formControlName]="field.field" [multiple]="field.options?.selectMultiple">
-                        @for (option of (field.options?.selectOptions|async); track option) {
-                          <mat-option [value]="option.value">{{ option.label }}</mat-option>
-                        }
-                      </mat-select>
-                    } @else {
-                      <input [type]="field.options?.textType||'text'" [name]="(config?.idPrefix||'')+field.field"
-                             matInput [formControlName]="field.field" autocomplete="off"/>
-                    }
-                    <!-- Server field errors-->
-                    @if (serverErrors()[field.field]) {
-                      @for (error of serverErrors()[field.field]; track error) {
-                        <mat-error>{{ error }}</mat-error>
-                      }
-                    }
-                  </mat-form-field>
-                }
-              </div>
-            }
-          </div>
-        }
+        <app-entity-form-rows [idPrefix]="config?.idPrefix" [rows]="config?.rows" [formControls]="formControls()"
+                              [serverErrors]="serverErrors()"/>
       }
     </div>
     <!--  End content-->
