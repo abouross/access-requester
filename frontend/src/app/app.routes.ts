@@ -79,6 +79,27 @@ export const routes: Routes = [
       },
       /** End Validation contexts **/
 
+      /** Validation Flows **/
+      {
+        path: 'settings/flows',
+        loadComponent: () => import('./pages/settings/validation-flows/validation-flows').then(c => c.ValidationFlows),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.validation_flows', {appName: environment.appName})
+        },
+        children: [
+          {
+            path: 'create/:contextId',
+            loadComponent: () => import('./pages/settings/validation-flows/create-flow/create-flow').then(c => c.CreateFlow)
+          },
+          {
+            path: 'edit/:contextId/:id',
+            loadComponent: () => import('./pages/settings/validation-flows/edit-flow/edit-flow').then(c => c.EditFlow)
+          }
+        ]
+      },
+      /** End Validation Flows **/
+
       {
         path: 'error/:code',
         loadComponent: () => import('./pages/error/error').then(c => c.Error),

@@ -117,7 +117,7 @@ export class EditContext extends Destroyable implements OnInit {
             this._translate.get('contexts.update_success', {context: res.name})
               .pipe(take(1))
               .subscribe(message => {
-                this._snackbar.open(message, 'OK', {panelClass: 'snackbar-success', horizontalPosition: 'end'});
+                this._snackbar.open(message, 'OK', {panelClass: 'success-snackbar', horizontalPosition: 'end'});
               })
             this._listService.emitChangeEvent('contexts-list', {type: 'update', object: res})
           }

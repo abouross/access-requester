@@ -2,6 +2,9 @@
   <!--  Left sie-->
   <div class="left-side">
     <app-entity-list-table #listTable [config]="tableConfig"/>
+    <mat-paginator [length]="listTable.page()?.page?.totalElements" [pageSize]="listTable.pageSize()"
+                   [pageSizeOptions]="pageSizes" (page)="listTable.pageChange($event)"
+                   [showFirstLastButtons]="_showFirstLastButtons()"/>
   </div>
   <!--  ENd left side-->
   <div class="entity-list-split-divider"></div>

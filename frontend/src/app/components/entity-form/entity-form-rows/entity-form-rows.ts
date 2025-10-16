@@ -6,6 +6,7 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {TranslatePipe} from "@ngx-translate/core";
 import {MatOption, MatSelect} from '@angular/material/select';
 import {FormRow, ServerErrors} from '../models';
+import {UserInput} from '../../user-input/user-input';
 
 @Component({
   selector: 'app-entity-form-rows',
@@ -19,7 +20,8 @@ import {FormRow, ServerErrors} from '../models';
     MatSelect,
     MatSlideToggle,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
+    UserInput
   ],
   templateUrl: './entity-form-rows.html',
   styleUrl: './entity-form-rows.scss'

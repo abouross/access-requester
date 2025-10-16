@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  overflow: auto;
+
+  mat-progress-bar {
+    position: sticky;
+    top: 0;
+  }
+
+  mat-error {
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  .actions {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    & > * {
+      margin: 0 16px;
+    }
+  }
+}

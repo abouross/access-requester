@@ -1,0 +1,29 @@
+@if (!selectContext()) {
+  @if (loading()) {
+    <mat-progress-bar mode="indeterminate"/>
+  }
+  <div class="context-selector-container">
+    <mat-form-field>
+      <mat-label>{{ 'contexts.select_label'|translate }}</mat-label>
+      <mat-select (selectionChange)="contextChange($event)" [value]="selectContext()">
+        @for (context of contexts(); track context.id) {
+          <mat-option [value]="context">{{ context.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+}
+<app-entity-list-split [title]="'flows.title'|translate" [tableConfig]="tableConfig()">
+  <a matIconButton href="#" [routerLink]="['/','settings','flows','create', selectContext()?.id]"
+     class="split-action"
+     [matTooltip]="'create'|translate">
+    <mat-icon>add</mat-icon>
+  </a>
+  <mat-select class="split-action context-selector" (selectionChange)="contextChange($event)" [value]="selectContext()"
+              [placeholder]="'contexts.select_label'|translate">
+    @for (context of contexts(); track context.id) {
+      <mat-option [value]="context">{{ context.name }}</mat-option>
+    }
+  </mat-select>
+  <router-outlet/>
+</app-entity-list-split>

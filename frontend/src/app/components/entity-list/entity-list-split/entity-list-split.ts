@@ -1,5 +1,5 @@
 import {Component, Input, signal} from '@angular/core';
-import {MatPaginatorIntl} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {PaginatorIntl} from '../paginator-intl';
 import {EntityListTableConfig} from '../entity-list-table/models';
 import {EntityListTable} from '../entity-list-table/entity-list-table';
@@ -15,7 +15,8 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatIcon,
     MatIconButton,
     MatTooltip,
-    TranslatePipe
+    TranslatePipe,
+    MatPaginator
   ],
   templateUrl: './entity-list-split.html',
   styleUrl: './entity-list-split.scss',
@@ -31,6 +32,6 @@ export class EntityListSplit {
     this._showFirstLastButtons.set(value);
   }
 
-  protected _showFirstLastButtons = signal(true)
+  protected _showFirstLastButtons = signal(false)
   protected readonly pageSizes = [20, 50, 100, 200]
 }

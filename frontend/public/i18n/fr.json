@@ -8,7 +8,7 @@
     "users": "Utilisateurs",
     "settings": "Paramètres",
     "contexts": "Contextes de validation",
-    "flows": "Flux de validations"
+    "flows": "Flux de validation"
   },
   "lang": {
     "fr": "Français",
@@ -20,7 +20,8 @@
     "login": "Connexion | {{appName}}",
     "users": "Gestion des utilisateurs | {{appName}}",
     "profile": "Profil | {{appName}}",
-    "validation_contexts": "Gestion des contextes de validation | {{appName}}"
+    "validation_contexts": "Gestion des contextes de validation | {{appName}}",
+    "validation_flows": "Gestion des flux de validation | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -115,12 +116,19 @@
     "update_success": "'{{context}}' mis à jour avec succès.",
     "validators": {
       "title": "Validateurs permanents"
-    }
+    },
+    "select_label": "Selectionner un contexte"
   },
   "validators": {
     "add": "Ajouter",
     "delete": "Supprimer le validateur",
     "add_success": "Validateur ajouté avec succès !"
+  },
+  "flows": {
+    "title": "Flux de validation",
+    "user": "Utilisateur",
+    "context": "Contexte de validation",
+    "creation_success": "Flux de validation pour '{{flow}}' créé avec succès."
   },
   "refresh": "Actualiser",
   "create": "Créer",

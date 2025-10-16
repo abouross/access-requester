@@ -25,10 +25,11 @@ export interface FormField {
     selectOptions?: Observable<SelectOption[]>
     selectMultiple?: boolean
     textType?: 'text' | 'number' | 'email' | 'password' | 'url'
+    userBackendUrl?: string
   }
 }
 
-export type FieldType = 'TEXT' | 'BOOLEAN' | 'SELECT' | 'TEXTAREA'
+export type FieldType = 'TEXT' | 'BOOLEAN' | 'SELECT' | 'TEXTAREA' | 'USER'
 
 export interface SelectOption {
   label: string

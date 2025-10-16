@@ -13,6 +13,9 @@
                 <mat-error>{{ error }}</mat-error>
               }
             }
+          } @else if (field.type === 'USER') {
+            <app-user-input [formControl]="formControls[field.field]" [placeholder]="field.label|translate"
+                            [backendUrl]="field.options?.userBackendUrl"/>
           } @else {
             <mat-form-field>
               <mat-label>{{ field.label|translate }}</mat-label>

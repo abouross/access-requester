@@ -82,7 +82,7 @@ export class CreateContext extends Destroyable {
             this._translate.get('contexts.creation_success', {context: res.name})
               .pipe(take(1))
               .subscribe(message => {
-                this._snackbar.open(message, 'OK', {panelClass: 'snackbar-success', horizontalPosition: 'end'});
+                this._snackbar.open(message, 'OK', {panelClass: 'success-snackbar', horizontalPosition: 'end'});
                 this._router.navigate(['/', 'settings', 'contexts', 'edit', res.id])
                   .then(() => {
                   });

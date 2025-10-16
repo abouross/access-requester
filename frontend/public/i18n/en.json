@@ -20,7 +20,8 @@
     "login": "Sign in | {{appName}}",
     "users": "User management | {{appName}}",
     "profile": "Profile | {{appName}}",
-    "validation_contexts": "Validation contexts management | {{appName}}"
+    "validation_contexts": "Validation contexts management | {{appName}}",
+    "validation_flows": "Validation flows management | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -115,12 +116,19 @@
     "update_success": "'{{context}}' updated successfully.",
     "validators": {
       "title": "Permanents validators"
-    }
+    },
+    "select_label": "Select an context"
   },
   "validators": {
     "add": "Add",
     "delete": "Delete validator",
     "add_success": "Validator added successfully !"
+  },
+  "flows": {
+    "title": "Validation flows",
+    "user": "User",
+    "context": "Validation context",
+    "creation_success": "'{{flow}}' flow created successfully."
   },
   "refresh": "Refresh",
   "create": "Create",

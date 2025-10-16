@@ -9,8 +9,15 @@
 
   .left-side {
     width: 40%;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     padding-right: 2px;
+
+    app-entity-list-table {
+      flex: 1 1 auto;
+      overflow: auto;
+    }
   }
 
   .entity-list-split-divider {
@@ -41,13 +48,15 @@
 
       .entity-list-split-actions {
         margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
     }
 
     .entity-list-split-content {
       flex: 1 1 auto;
       overflow: auto;
-
     }
   }
 }
