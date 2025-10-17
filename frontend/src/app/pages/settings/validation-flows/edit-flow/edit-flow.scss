@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+  padding: 16px;
+
+  .flow-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > .field-container {
+      width: 50%;
+      box-sizing: border-box;
+
+      &:not(:last-child) {
+        padding-right: 16px;
+      }
+
+      .field {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--mat-sys-outline-variant);
+        border-radius: var(--mat-sys-corner-medium);
+        padding: 16px;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  app-validators-manager {
+    margin: 16px;
+  }
+}

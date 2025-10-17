@@ -128,7 +128,10 @@
     "title": "Validation flows",
     "user": "User",
     "context": "Validation context",
-    "creation_success": "'{{flow}}' flow created successfully."
+    "creation_success": "'{{flow}}' flow created successfully.",
+    "validators": {
+      "title": "Validators"
+    }
   },
   "refresh": "Refresh",
   "create": "Create",

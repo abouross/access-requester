@@ -128,7 +128,10 @@
     "title": "Flux de validation",
     "user": "Utilisateur",
     "context": "Contexte de validation",
-    "creation_success": "Flux de validation pour '{{flow}}' créé avec succès."
+    "creation_success": "Flux de validation pour '{{flow}}' créé avec succès.",
+    "validators": {
+      "title": "Validateurs"
+    }
   },
   "refresh": "Actualiser",
   "create": "Créer",
