@@ -1,6 +1,13 @@
-import {ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection} from '@angular/core';
+import {
+  ApplicationConfig,
+  LOCALE_ID,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection
+} from '@angular/core';
 import {provideRouter} from '@angular/router';
-
+import {registerLocaleData} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeEn from '@angular/common/locales/en';
 import {routes} from './app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {provideTranslateService, TranslateLoader} from '@ngx-translate/core';
@@ -9,6 +16,10 @@ import {loadingProgressInterceptor} from './components/loading-progress/loading-
 import {errorInterceptor} from './pages/error/error-interceptor';
 import {CustomTranslateLoader} from './translation/custom-translate-loader';
 import {translateInterceptor} from './translation/translate-interceptor';
+import {provideNativeDateAdapter} from '@angular/material/core';
+
+registerLocaleData(localeFr);
+registerLocaleData(localeEn);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +29,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([bearerInterceptor, translateInterceptor, loadingProgressInterceptor, errorInterceptor])),
     provideTranslateService({
       loader: {provide: TranslateLoader, useClass: CustomTranslateLoader},
-    })
+    }),
+    {provide: LOCALE_ID, useValue: 'en'},
+    provideNativeDateAdapter()
   ]
 };

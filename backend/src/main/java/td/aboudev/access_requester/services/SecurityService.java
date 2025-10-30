@@ -89,7 +89,7 @@ public class SecurityService {
      *
      * @return User entity
      */
-    private User getCurrentUser() {
+    public User getCurrentUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userRepository.findByUsername(userDetails.getUsername());
         if (user == null) {

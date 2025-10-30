@@ -21,7 +21,8 @@
     "users": "Gestion des utilisateurs | {{appName}}",
     "profile": "Profil | {{appName}}",
     "validation_contexts": "Gestion des contextes de validation | {{appName}}",
-    "validation_flows": "Gestion des flux de validation | {{appName}}"
+    "validation_flows": "Gestion des flux de validation | {{appName}}",
+    "delegations": "Délégations utilisateur | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -133,8 +134,21 @@
       "title": "Validateurs"
     }
   },
+  "delegations": {
+    "title": "Délégations utilisateur",
+    "delegatedUsers": "Utilisateurs délégués",
+    "delegatedUser": "Utilisateur délégué",
+    "startDate": "Date du début",
+    "endDate": "Date de fin",
+    "finished": "Terminé",
+    "dateRange": "Plage de dates de validité",
+    "save": "Enregistrer",
+    "creation_success": "Utilisateur délégué enregistré avec succès.",
+    "delete_success": "Utilisateur délégué '{{delegation}}' supprimé avec succès."
+  },
   "refresh": "Actualiser",
   "create": "Créer",
+  "delete": "Supprimer",
   "close": "Fermer",
   "madeby": "Fait avec ♥ par"
 }

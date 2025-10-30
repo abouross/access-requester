@@ -74,6 +74,7 @@ public class ValidationViolationExceptionHandler {
     }
 
     protected Set<ValidationErrorDto> handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
+        log.debug("MethodArgumentNotValidException {}", e.getFieldErrors());
         return e.getFieldErrors()
                 .stream()
                 .map(objectError -> new ValidationErrorDto(objectError.getField(), objectError.getDefaultMessage(), objectError.getRejectedValue()))

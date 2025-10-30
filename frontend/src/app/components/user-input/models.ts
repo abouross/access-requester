@@ -6,6 +6,7 @@ export interface User {
   lastName?: string
   title?: string
   department?: string
+  displayName: string
 }
 
 

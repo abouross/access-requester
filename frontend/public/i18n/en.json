@@ -21,7 +21,8 @@
     "users": "User management | {{appName}}",
     "profile": "Profile | {{appName}}",
     "validation_contexts": "Validation contexts management | {{appName}}",
-    "validation_flows": "Validation flows management | {{appName}}"
+    "validation_flows": "Validation flows management | {{appName}}",
+    "delegations": "User delegations | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -133,8 +134,21 @@
       "title": "Validators"
     }
   },
+  "delegations": {
+    "title": "User delegations",
+    "delegatedUsers": "Delegated users",
+    "delegatedUser": "Delegated user",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "finished": "Finished",
+    "dateRange": "Validity date range",
+    "save": "Save",
+    "creation_success": "Delegated user successfully registered.",
+    "delete_success": "Delegated user '{{delegation}}' successfully deleted."
+  },
   "refresh": "Refresh",
   "create": "Create",
+  "delete": "Delete",
   "close": "Close",
   "madeby": "Made with ♥ by"
 }

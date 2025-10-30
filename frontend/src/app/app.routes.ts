@@ -36,6 +36,22 @@ export const routes: Routes = [
           return translate.get('title.profile', {appName: environment.appName})
         }
       },
+
+      /** Delegations **/
+      {
+        path: 'delegations',
+        loadComponent: () => import('./pages/delegations/delegations').then(c => c.Delegations),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.delegations', {appName: environment.appName})
+        },
+        children: [{
+          path: ':userId',
+          loadComponent: () => import('./pages/delegations/edit-delegation/edit-delegation').then(c => c.EditDelegation)
+        }]
+      },
+      /** End Delegations **/
+
       /** Users **/
       {
         path: 'users',

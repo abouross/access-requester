@@ -147,16 +147,24 @@ public class UserService {
     }
 
     /**
-     * Retrieve use by id
+     * Get User entity by id
      *
      * @param id user id
-     * @return found user
+     * @return User entity
+     */
+    public User getUser(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException(translate.trans("user.notfound")));
+    }
+
+    /**
+     * Retrieve user details by id
+     *
+     * @param id user id
+     * @return User details
      */
     public UserDto.Details get(Long id) {
-        return UserDto.Details.newInstance(
-                userRepository.findById(id)
-                        .orElseThrow(() -> new BadRequestException(translate.trans("user.notfound")))
-        );
+        return UserDto.Details.newInstance(getUser(id));
     }
 
     /**
@@ -172,5 +180,14 @@ public class UserService {
         }
         result.add(new GroupedResult("all", allCount));
         return result;
+    }
+
+    /**
+     * Persist user to database
+     *
+     * @param user UYser to be saved
+     */
+    public void save(User user) {
+        userRepository.save(user);
     }
 }

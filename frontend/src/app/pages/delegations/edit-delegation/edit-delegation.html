@@ -1,0 +1,114 @@
+@if (loading()) {
+  <mat-progress-bar mode="indeterminate"/>
+}
+
+<div class="delegations-form">
+  <div class="field-container">
+    <span class="field">{{ userDelegations()?.firstName }}</span>
+  </div>
+  <div class="field-container">
+    <span class="field">{{ userDelegations()?.lastName }}</span>
+  </div>
+  <div class="field-container">
+    <span class="field">{{ userDelegations()?.username }}</span>
+  </div>
+  <div class="field-container">
+    <span class="field">{{ userDelegations()?.email }}</span>
+  </div>
+  <div class="field-container">
+    <span class="field">{{ userDelegations()?.title }}</span>
+  </div>
+  <div class="field-container">
+    <span class="field">{{ userDelegations()?.department }}</span>
+  </div>
+</div>
+
+
+<fieldset class="delegated-users">
+  <legend>{{ 'delegations.delegatedUsers'|translate }}</legend>
+
+  <!--Add delegation form-->
+  <form [formGroup]="form" (submit)="create()">
+    @if (formError().length > 0) {
+      <mat-error>{{ formError() }}</mat-error>
+    }
+    <div class="delegated-form">
+      <div class="user-input">
+        <app-user-input [placeholder]="'delegations.delegatedUser'|translate" [backendUrl]="usersBackendUrl"
+                        formControlName="delegatedUserId"/>
+
+        <!--        Server errors-->
+        @if (formErrors()['delegatedUserId']) {
+          @for (error of formErrors()['delegatedUserId']; track error) {
+            <mat-error>{{ error }}</mat-error>
+          }
+        }
+      </div>
+
+
+      <mat-form-field>
+        <mat-label>{{ 'delegations.dateRange'|translate }}</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate [placeholder]="'delegations.startDate'|translate" formControlName="startDate">
+          <input matEndDate [placeholder]="'delegations.endDate'|translate" formControlName="endDate">
+        </mat-date-range-input>
+        <mat-hint>{{ dateFormatString() }} – {{ dateFormatString() }}</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <!--        Server errors-->
+        @if (formErrors()['startDate']) {
+          @for (error of formErrors()['startDate']; track error) {
+            <mat-error>{{ error }}</mat-error>
+          }
+        }
+        @if (formErrors()['endDate']) {
+          @for (error of formErrors()['endDate']; track error) {
+            <mat-error>{{ error }}</mat-error>
+          }
+        }
+      </mat-form-field>
+
+      <button type="submit" matButton="tonal" [disabled]="form.invalid || loading() || form.disabled">
+        {{ 'delegations.save'|translate }}
+      </button>
+    </div>
+  </form>
+  <!--End add delegation form-->
+
+  <!--  Delegations list-->
+  <table>
+    <thead>
+    <tr>
+      <th>{{ 'user.firstName'|translate }}</th>
+      <th>{{ 'user.username'|translate }}</th>
+      <th>{{ 'user.email'|translate }}</th>
+      <th>{{ 'delegations.startDate'|translate }}</th>
+      <th>{{ 'delegations.endDate'|translate }}</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (delegation of userDelegations()?.delegations; track delegation.id) {
+        <tr>
+          <td>{{ delegation.delegatedUser.displayName }}</td>
+          <td>{{ delegation.delegatedUser.username }}</td>
+          <td>{{ delegation.delegatedUser.email }}</td>
+          <td>{{ delegation.startDate|date:'longDate': undefined:localeId() }}</td>
+          <td>{{ delegation.endDate|date:'longDate': undefined:localeId() }}</td>
+          <td>
+            @if (isDeletable(delegation)) {
+              <button type="button" matIconButton [matTooltip]="'delete'|translate" (click)="delete(delegation)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            } @else {
+              {{ 'delegations.finished'|translate }}
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <!--  End delegations list-->
+</fieldset>
+

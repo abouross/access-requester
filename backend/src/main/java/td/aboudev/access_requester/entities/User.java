@@ -37,6 +37,10 @@ public class User {
     @Getter(AccessLevel.NONE)
     private List<String> roles = Collections.emptyList();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OrderBy("id asc")
+    private List<Delegation> delegations;
+
     public List<String> getRoles() {
         if (roles == null) {
             return Collections.emptyList();
