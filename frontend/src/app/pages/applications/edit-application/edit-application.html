@@ -1,0 +1,49 @@
+@if (loading()) {
+  <mat-progress-bar mode="indeterminate"/>
+}
+
+@if (application()) {
+  <!--Context Form-->
+  <form [formGroup]="form()" (submit)="update()">
+    <app-entity-form-rows [formControls]="formControls()" [rows]="rows" [serverErrors]="serverErrors()"
+                          idPrefix="context_"/>
+    <div class="form-actions">
+      <button type="submit" matButton="filled" [disabled]="!(!loading() && form().valid)" autofocus>
+        {{ 'form.update' |translate }}
+      </button>
+    </div>
+  </form>
+  <!--End context form-->
+}
+
+<fieldset class="custom">
+  <legend>{{ 'applications.roles'|translate }}</legend>
+  <!--  Role form-->
+  <mat-form-field class="role-form">
+    <mat-label>{{ 'applications.role.label'|translate }}</mat-label>
+    <input type="text" matInput required minlength="2" maxlength="100" #roleInput="matInput" #roleInputElt/>
+    <button matIconButton matSuffix (click)="addRole(roleInputElt)"
+            [disabled]="roleInput.disabled || !roleInputElt.checkValidity()">
+      <mat-icon>add</mat-icon>
+    </button>
+    @if (roleInput.disabled) {
+      <mat-progress-bar mode="indeterminate"/>
+    }
+  </mat-form-field>
+  <!--  End role form-->
+
+  <!--  Roles list-->
+  <ul class="roles-list">
+    @for (role of application()?.roles; track role) {
+      <li>
+        {{ role }}
+        <button matIconButton #deleteButton (click)="removeRole(role, deleteButton)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    }
+  </ul>
+  <!--  End roles list-->
+</fieldset>
+
+

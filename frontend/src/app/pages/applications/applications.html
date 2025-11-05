@@ -1,0 +1,7 @@
+<app-entity-list-split [title]="'applications.title'|translate" [tableConfig]="tableConfig">
+  <a matIconButton href="#" routerLink="/applications/create" class="split-action"
+     [matTooltip]="'create'|translate">
+    <mat-icon>add</mat-icon>
+  </a>
+  <router-outlet/>
+</app-entity-list-split>

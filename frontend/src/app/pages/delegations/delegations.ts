@@ -14,7 +14,6 @@ import {Router, RouterOutlet} from '@angular/router';
     RouterOutlet
   ],
   templateUrl: './delegations.html',
-  styleUrl: './delegations.scss'
 })
 export class Delegations {
   private _router = inject(Router)

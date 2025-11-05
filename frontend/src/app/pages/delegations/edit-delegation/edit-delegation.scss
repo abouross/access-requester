@@ -28,19 +28,7 @@
     }
   }
 
-  .delegated-users {
-    height: 500px;
-    border: 1px solid var(--mat-sys-outline-variant);
-    box-sizing: border-box;
-    border-radius: var(--mat-card-outlined-container-shape, var(--mat-sys-corner-medium));
-    padding: 10px;
-    margin-left: 8px;
-    overflow: auto;
-
-    legend {
-      font: var(--mat-sys-title-medium);
-    }
-
+  fieldset.custom {
     .delegated-form {
       display: flex;
       flex-direction: row;
@@ -58,82 +46,6 @@
       button {
         margin-top: 21px;
       }
-    }
-
-    table {
-      width: 100%;
-      border: 0;
-      border-spacing: 0;
-      table-layout: auto;
-      white-space: normal;
-      background-color: var(--mat-table-background-color, var(--mat-sys-surface));
-      //Table header
-      & > thead {
-        position: sticky;
-        top: -10px;
-        background-color: var(--mat-sys-surface);
-
-        & > tr {
-          -moz-osx-font-smoothing: grayscale;
-          -webkit-font-smoothing: antialiased;
-          height: var(--mat-table-header-container-height, 56px);
-          color: var(--mat-table-header-headline-color, var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87)));
-          font-family: var(--mat-table-header-headline-font, var(--mat-sys-title-small-font, Roboto, sans-serif));
-          line-height: var(--mat-table-header-headline-line-height, var(--mat-sys-title-small-line-height));
-          font-size: var(--mat-table-header-headline-size, var(--mat-sys-title-small-size, 14px));
-          font-weight: var(--mat-table-header-headline-weight, var(--mat-sys-title-small-weight, 500));
-
-          & > th {
-            border-bottom-color: var(--mat-table-row-item-outline-color, var(--mat-sys-outline, rgba(0, 0, 0, 0.12)));
-            border-bottom-width: var(--mat-table-row-item-outline-width, 1px);
-            border-bottom-style: solid;
-            letter-spacing: var(--mat-table-header-headline-tracking, var(--mat-sys-title-small-tracking));
-            font-weight: inherit;
-            line-height: inherit;
-            box-sizing: border-box;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            outline: none;
-            text-align: left;
-            padding: 0 16px;
-            vertical-align: middle;
-            color: light-dark(var(--mat-sys-on-primary-container), var(--mat-sys-on-secondary-container));
-          }
-        }
-      }
-
-      //End table header
-
-      //Table body
-      & > tbody > tr {
-        -webkit-font-smoothing: antialiased;
-        font-family: var(--mat-table-row-item-label-text-font, var(--mat-sys-body-medium-font, Roboto, sans-serif));
-        line-height: var(--mat-table-row-item-label-text-line-height, var(--mat-sys-body-medium-line-height));
-        font-size: var(--mat-table-row-item-label-text-size, var(--mat-sys-body-medium-size, 14px));
-        font-weight: var(--mat-table-row-item-label-text-weight, var(--mat-sys-body-medium-weight));
-        height: var(--mat-table-row-item-container-height, 52px);
-        color: var(--mat-table-row-item-label-text-color, var(--mat-sys-on-surface, rgba(0, 0, 0, 0.87)));
-
-        & > td {
-          border-bottom-color: var(--mat-card-outlined-outline-color, var(--mat-sys-outline-variant));
-          border-bottom-width: var(--mat-table-row-item-outline-width, 1px);
-          border-bottom-style: solid;
-          letter-spacing: var(--mat-table-row-item-label-text-tracking, var(--mat-sys-body-medium-tracking));
-          line-height: inherit;
-          padding: 0 16px;
-          box-sizing: border-box;
-          overflow: hidden;
-          text-align: left;
-          text-overflow: ellipsis;
-          vertical-align: middle;
-
-          button {
-            @include mat.icon-button-overrides((icon-color: var(--mat-sys-error)))
-          }
-        }
-      }
-
-      //End table body
     }
   }
 }

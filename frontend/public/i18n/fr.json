@@ -22,7 +22,8 @@
     "profile": "Profil | {{appName}}",
     "validation_contexts": "Gestion des contextes de validation | {{appName}}",
     "validation_flows": "Gestion des flux de validation | {{appName}}",
-    "delegations": "Délégations utilisateur | {{appName}}"
+    "delegations": "Délégations utilisateur | {{appName}}",
+    "applications": "Applications / Systèmes | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -145,6 +146,21 @@
     "save": "Enregistrer",
     "creation_success": "Utilisateur délégué enregistré avec succès.",
     "delete_success": "Utilisateur délégué '{{delegation}}' supprimé avec succès."
+  },
+  "applications": {
+    "title": "Applications / Systèmes",
+    "name": "Nom",
+    "enabled": "Activé",
+    "description": "Description",
+    "context": "Contexte de validation",
+    "creation_success": "Application ou système '{{application}}' créé avec succès.",
+    "update_success": "Application ou système '{{application}}' mis à jour avec succès.",
+    "roles": "Rôles / Fonctionnalités",
+    "role": {
+      "label": "Rôle ou Fonctionnalité",
+      "add_success": "'{{role}}' ajouté avec succès !",
+      "remove_success": "'{{role}}' supprimé avec succès !"
+    }
   },
   "refresh": "Actualiser",
   "create": "Créer",

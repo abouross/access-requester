@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  box-sizing: border-box;
+  padding: 16px 16px 16px 8px;
+  position: relative;
+
+  mat-progress-bar {
+    position: sticky;
+    top: 0;
+  }
+
+  fieldset.custom {
+    position: relative;
+
+    .role-form {
+      position: sticky;
+      top: 0;
+    }
+
+    .roles-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      > li {
+        padding: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        button {
+          margin-left: auto;
+          @include mat.icon-button-overrides((icon-color: var(--mat-sys-error)))
+        }
+      }
+    }
+  }
+}

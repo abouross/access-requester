@@ -37,6 +37,27 @@ export const routes: Routes = [
         }
       },
 
+      /** Applications **/
+      {
+        path: 'applications',
+        loadComponent: () => import('./pages/applications/applications').then(c => c.Applications),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.applications', {appName: environment.appName})
+        },
+        children: [
+          {
+            path: 'create',
+            loadComponent: () => import('./pages/applications/create-application/create-application').then(c => c.CreateApplication),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () => import('./pages/applications/edit-application/edit-application').then(c => c.EditApplication),
+          },
+        ]
+      },
+      /** End Applications **/
+
       /** Delegations **/
       {
         path: 'delegations',

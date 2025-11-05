@@ -22,7 +22,8 @@
     "profile": "Profile | {{appName}}",
     "validation_contexts": "Validation contexts management | {{appName}}",
     "validation_flows": "Validation flows management | {{appName}}",
-    "delegations": "User delegations | {{appName}}"
+    "delegations": "User delegations | {{appName}}",
+    "applications": "Applications / Systems  | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -145,6 +146,21 @@
     "save": "Save",
     "creation_success": "Delegated user successfully registered.",
     "delete_success": "Delegated user '{{delegation}}' successfully deleted."
+  },
+  "applications": {
+    "title": "Applications / Systems",
+    "name": "Name",
+    "enabled": "Enabled",
+    "description": "Description",
+    "context": "Validation context",
+    "creation_success": "Application or system '{{application}}' created successfully.",
+    "update_success": "Application or system '{{application}}' updated successfully.",
+    "roles": "Roles / Features",
+    "role": {
+      "label": "Role or Feature",
+      "add_success": "'{{role}}' added successfully !",
+      "remove_success": "'{{role}}' removed successfully !"
+    }
   },
   "refresh": "Refresh",
   "create": "Create",

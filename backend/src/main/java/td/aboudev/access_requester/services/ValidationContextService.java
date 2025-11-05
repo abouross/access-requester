@@ -66,9 +66,7 @@ public class ValidationContextService {
      * @return Detailed flow context
      */
     public ValidationContextDto.Detail get(Integer id) {
-        ValidationContext context = contextRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-        return ValidationContextDto.Detail.newInstance(context);
+        return ValidationContextDto.Detail.newInstance(getEntity(id));
     }
 
     /**
@@ -199,5 +197,16 @@ public class ValidationContextService {
             }
             throw e;
         }
+    }
+
+    /**
+     * Get validation context entity by id
+     *
+     * @param id Context id
+     * @return Context entity
+     */
+    public ValidationContext getEntity(Integer id) {
+        return contextRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
     }
 }
