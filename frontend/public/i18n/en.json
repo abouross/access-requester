@@ -23,7 +23,8 @@
     "validation_contexts": "Validation contexts management | {{appName}}",
     "validation_flows": "Validation flows management | {{appName}}",
     "delegations": "User delegations | {{appName}}",
-    "applications": "Applications / Systems  | {{appName}}"
+    "applications": "Applications / Systems  | {{appName}}",
+    "access-requests": "Access requests  | {{appName}}"
   },
   "error": {
     "unknow": "An unknown error is preventing communication with the server. Please check your connection and try again.",
@@ -107,7 +108,12 @@
   "status": {
     "enabled": "Enabled",
     "disabled": "Disabled",
-    "all": "All"
+    "all": "All",
+    "NEW_REQUEST": "New request",
+    "PENDING": "Pending",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected",
+    "EXPIRED": "Expired"
   },
   "contexts": {
     "name": "Context name",
@@ -161,6 +167,16 @@
       "add_success": "'{{role}}' added successfully !",
       "remove_success": "'{{role}}' removed successfully !"
     }
+  },
+  "requests": {
+    "title": "Access requests",
+    "id": "ID",
+    "initiator": "Initiator",
+    "createdAt": "Created at",
+    "status": "Status",
+    "flows": "Validation flow",
+    "edit": "Update",
+    "create_title": "New access request"
   },
   "refresh": "Refresh",
   "create": "Create",

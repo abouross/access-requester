@@ -5,6 +5,14 @@
 <!-- Search form -->
 @if (config && config.searchable) {
   <div class="search-form-container">
+    <!--    Filters form-->
+    @if (config.filters) {
+      <form (submit)="refresh()" class="filter-form">
+      </form>
+    }
+    <!--    End filter form-->
+
+    <!--    Search form-->
     <form (submit)="refresh()" class="search-form">
       <mat-form-field appearance="outline">
         <!--    Display only if search-->
@@ -21,12 +29,13 @@
         </button>
       </mat-form-field>
     </form>
+    <!--    End search form-->
   </div>
 }
 <!-- End Search form -->
 
 <!--Data table-->
-<table class="entity-list-table" [class.row-clickable]="config && config.onClickRow" matSort
+<table class="entity-list-table" [class.row-clickable]="config && config.onClickRow" matSort #tableSort="matSort"
        (matSortChange)="sortChange($event)">
   <thead>
   <tr>
@@ -46,14 +55,28 @@
         }
         @if (hasAction()) {
           <td>
-            <nav class="row-actions">
-              @for (action of config?.rowActions; track action) {
-                <button type="button" class="row-action" [class]="action.status" matIconButton
-                        [matTooltip]="action.title|translate" (click)="rowActionClick(item, action)">
-                  <mat-icon>{{ action.icon }}</mat-icon>
-                </button>
-              }
-            </nav>
+            @if (config?.rowActionType === 'menu') {
+              <button matIconButton [matMenuTriggerFor]="actionsMenu" aria-label="Row actions menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #actionsMenu="matMenu">
+                @for (action of config?.rowActions; track action) {
+                  <button type="button" mat-menu-item (click)="rowActionClick(item, action)">
+                    <mat-icon>{{ action.icon }}</mat-icon>
+                    <span>{{ action.title|translate }}</span>
+                  </button>
+                }
+              </mat-menu>
+            } @else {
+              <nav class="row-actions">
+                @for (action of config?.rowActions; track action) {
+                  <button type="button" class="row-action" [class]="action.status" matIconButton
+                          [matTooltip]="action.title|translate" (click)="rowActionClick(item, action)">
+                    <mat-icon>{{ action.icon }}</mat-icon>
+                  </button>
+                }
+              </nav>
+            }
           </td>
         }
       </tr>

@@ -12,7 +12,7 @@ export const mainMenuItems: MenuItem[] = [
   {title: 'menu.access_request', icon: 'app_registration', link: 'access-requests', isActive: false},
   {title: 'menu.validations', icon: 'approval', link: 'approvals', isActive: false},
   {title: 'menu.applications', icon: 'apps', link: 'applications', isActive: false, requiredRole: 'SYS_MNGT'},
-  {title: 'menu.delegations', icon: 'assignment_ind', link: 'delegations', isActive: false},
+  {title: 'menu.delegations', icon: 'how_to_reg', link: 'delegations', isActive: false},
   {title: 'menu.users', icon: 'groups', link: 'users', isActive: false, requiredRole: 'USERS_MNGT'},
   {
     title: 'menu.settings',

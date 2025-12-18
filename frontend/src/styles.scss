@@ -245,3 +245,41 @@ table.table {
 }
 
 /* End Form actions */
+
+/* User info */
+.user {
+  $icon-size: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 0;
+
+  .icon {
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: $icon-size;
+    width: $icon-size;
+    overflow: hidden;
+    font-family: "Material Icons", serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: $icon-size;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: "liga";
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 8px;
+  }
+
+  .name {
+    display: block;
+  }
+}
+
+/* End User info */

@@ -8,6 +8,8 @@ export interface EntityListTableConfig {
   rowActions: Action[]
   onClickRow?: (row: any) => Observable<boolean>
   listId?: string
+  rowActionType?: 'menu' | 'buttons'
+  filters?: Filter[]
 }
 
 export interface Column {
@@ -17,7 +19,7 @@ export interface Column {
   sortable: boolean
 }
 
-export type ColumnType = 'text' | 'boolean' | 'list'
+export type ColumnType = 'text' | 'boolean' | 'list' | 'user' | 'date' | 'status' | 'id'
 
 export interface Action {
   title: string
@@ -39,4 +41,8 @@ export interface Page {
     isSorted: boolean
     orders: { field: string, direction: SortDirection }[]
   }
+}
+
+export interface Filter {
+
 }

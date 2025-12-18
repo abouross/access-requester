@@ -23,7 +23,8 @@
     "validation_contexts": "Gestion des contextes de validation | {{appName}}",
     "validation_flows": "Gestion des flux de validation | {{appName}}",
     "delegations": "Délégations utilisateur | {{appName}}",
-    "applications": "Applications / Systèmes | {{appName}}"
+    "applications": "Applications / Systèmes | {{appName}}",
+    "access-requests": "Demandes d'accès | {{appName}}"
   },
   "error": {
     "unknow": "Une Erreur inconnu empeche la communication avec le serveur. Veuillez verifier votre connexion puis réessayer.",
@@ -107,7 +108,12 @@
   "status": {
     "enabled": "Actives",
     "disabled": "Inactives",
-    "all": "Tout"
+    "all": "Tout",
+    "NEW_REQUEST": "Nouvelle demande",
+    "PENDING": "En cours",
+    "APPROVED": "Approuvée",
+    "REJECTED": "Rejeté",
+    "EXPIRED": "Expiré"
   },
   "contexts": {
     "name": "Nom du contexte",
@@ -161,6 +167,16 @@
       "add_success": "'{{role}}' ajouté avec succès !",
       "remove_success": "'{{role}}' supprimé avec succès !"
     }
+  },
+  "requests": {
+    "title": "Demandes d'accès",
+    "id": "ID",
+    "initiator": "Initiateur",
+    "createdAt": "Créé le",
+    "status": "Statut",
+    "flows": "Circuit de validation",
+    "edit": "Mettre à jour la demande",
+    "create_title": "Nouvel demande d'accès"
   },
   "refresh": "Actualiser",
   "create": "Créer",

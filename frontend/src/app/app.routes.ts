@@ -36,6 +36,24 @@ export const routes: Routes = [
           return translate.get('title.profile', {appName: environment.appName})
         }
       },
+      /** Access requests **/
+      {
+        path: 'access-requests',
+        loadComponent: () => import('./pages/access-requests/access-requests').then(c => c.AccessRequests),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.access-requests', {appName: environment.appName})
+        }
+      },
+      {
+        path: 'access-requests/create',
+        loadComponent: () => import('./pages/access-requests/create-access-request/create-access-request').then(c => c.CreateAccessRequest),
+        title: () => {
+          const translate = inject(TranslateService);
+          return translate.get('title.access-requests-create', {appName: environment.appName})
+        }
+      },
+      /** End Access requests **/
 
       /** Applications **/
       {

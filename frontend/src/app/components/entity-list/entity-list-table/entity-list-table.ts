@@ -13,9 +13,10 @@ import {MatIcon} from '@angular/material/icon';
 import {MatInput, MatSuffix} from '@angular/material/input';
 import {HttpClient} from '@angular/common/http';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
-import {AsyncPipe} from '@angular/common';
+import {AsyncPipe, DatePipe} from '@angular/common';
 import {PageEvent} from '@angular/material/paginator';
 import {Destroyable} from '../../destroyable';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 
 const deepGet = <T extends object>(obj: T, keys: string[]): any => {
   return keys.reduce((current: any, key) => current?.[key], obj);
@@ -37,11 +38,15 @@ const deepGet = <T extends object>(obj: T, keys: string[]): any => {
     MatPrefix,
     MatSuffix,
     TranslatePipe,
-    AsyncPipe
+    AsyncPipe,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem
   ],
   templateUrl: './entity-list-table.html',
   styleUrl: './entity-list-table.scss',
-  exportAs: 'EntityListTable'
+  exportAs: 'EntityListTable',
+  providers: [DatePipe]
 })
 export class EntityListTable extends Destroyable implements OnChanges {
   @Input() config?: EntityListTableConfig
@@ -60,6 +65,7 @@ export class EntityListTable extends Destroyable implements OnChanges {
   private _http = inject(HttpClient)
   private _translate = inject(TranslateService)
   private _eltRef = inject(ElementRef<HTMLElement>)
+  private _datePipe = inject(DatePipe)
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['config'] && changes['config'].currentValue) {
@@ -97,6 +103,10 @@ export class EntityListTable extends Destroyable implements OnChanges {
           this.searched.set(true)
         else
           this.searched.set(false)
+        if (result.sort.isSorted && result.sort.orders.length > 0 && !this.sort) {
+          const order = result.sort.orders[0]
+          this.sort = {active: order.field, direction: order.direction}
+        }
         if (this._eltRef && this._eltRef.nativeElement) {
           this._eltRef.nativeElement.scrollTop = 0;
           this._cd.markForCheck()
@@ -142,6 +152,20 @@ export class EntityListTable extends Destroyable implements OnChanges {
     if (column.type === 'boolean')
       return this._translate.get(value === true ? 'boolean.yes' : (value === false ? 'boolean.no' : 'boolean.na'))
         .pipe(map(translated => `<span class="boolean-type ${value === true ? 'yes' : (value === false ? 'no' : '')}">${translated}</span>`))
+    if (column.type === 'user') {
+      return of(`<span class="user"><span class="icon">account_circle</span><span><span class="name">${value.displayName}</span><span class="title">${value.title}</span></span></span>`)
+    }
+    if (column.type === 'date') {
+      return of(this._datePipe.transform(value));
+    }
+    if (column.type === 'status') {
+      return this._translate.get('status.' + value)
+        .pipe(map(translated => `<span class="status-type ${value}">${translated}</span>`))
+    }
+    if (column.type === 'id') {
+      const formatter = new Intl.NumberFormat(undefined, {useGrouping: false, minimumIntegerDigits: 6})
+      return of(formatter.format(value));
+    }
     return of(value)
   }
 
